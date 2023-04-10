@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">HelloWorld</string>
+
+    <string-array name="Menu_samples">
+        <item>Sample1</item>
+        <item>Sample2</item>
+        <item>Sample3</item>
+        <item>Sample4</item>
+    </string-array>
+
+    <string-array name="Location_Samples">
+        <item>Sample</item>
+        <item>Sample</item>
+        <item>Sample</item>
+        <item>Sample</item>
+    </string-array>
+
 </resources>

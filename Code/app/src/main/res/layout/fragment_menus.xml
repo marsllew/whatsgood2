@@ -6,5 +6,17 @@
     tools:context=".menus">
 
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="72dp"
+        android:layout_marginEnd="-4dp"
+        android:layout_marginBottom="-24dp"
+        tools:listitem="@layout/recycler_view_row"/>
 
 </FrameLayout>
