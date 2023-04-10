@@ -15,17 +15,17 @@ import java.util.List;
 
 public class Webscraper {
 
-    public void webscrape() throws IOException {
+    public List<List> webscrape() throws IOException {
         DateFormat dateFormat = new SimpleDateFormat("dd");
         Date date = new Date();
         String numberdate = new Integer(dateFormat.format(date)).toString();
-        System.out.println(numberdate);
+//        System.out.println(numberdate);
         List<String> meals = Arrays.asList("breakfast", "lunch", "dinner");
         List<String> breakfast_foods = new ArrayList<>();
         List<String> lunch_foods = new ArrayList<>();
         List<String> dinner_foods = new ArrayList<>();
         List<String> late_night_foods = new ArrayList<>();
-        List<List> lists = Arrays.asList(breakfast_foods, lunch_foods, dinner_foods);
+        List<List> lists = Arrays.asList(breakfast_foods, lunch_foods, dinner_foods, late_night_foods);
 
         Thread x = new Thread(new Runnable() {
             @Override
@@ -33,7 +33,7 @@ public class Webscraper {
                 Document doc = null;
                 try {
                     doc = Jsoup.connect("https://menus.sodexomyway.com/BiteMenu/Menu?menuId=22802&locationId=10249001&whereami=http://dining.wm.edu/dining-near-me/sadler").get();
-                    System.out.println(doc.title());
+//                    System.out.println(doc.title());
 
                     Elements day = doc.select("#menuid-" + numberdate + "-day");
                     for (int i =0; i < 3; i++) {
@@ -58,6 +58,12 @@ public class Webscraper {
             }
         });
         x.start();
+        try {
+            x.join();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        return lists;
     }
 }
 
