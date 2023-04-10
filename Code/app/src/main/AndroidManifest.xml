@@ -16,6 +16,9 @@
         android:theme="@style/Theme.HelloWorld"
         tools:targetApi="31">
         <activity
+            android:name=".Leave_Review"
+            android:exported="false" />
+        <activity
             android:name=".LoginPage"
             android:exported="false" />
         <activity
