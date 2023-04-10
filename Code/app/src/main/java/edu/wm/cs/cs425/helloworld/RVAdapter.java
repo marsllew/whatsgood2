@@ -22,7 +22,7 @@ public RVAdapter(Context context, ArrayList<ReviewModel> reviewModelArrayList){
     @NonNull
     @Override
     public RVAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater= LayoutInflater.from(context);
+        LayoutInflater inflater= LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.recycler_view_row,parent, false);
 
         return new RVAdapter.MyViewHolder(view);

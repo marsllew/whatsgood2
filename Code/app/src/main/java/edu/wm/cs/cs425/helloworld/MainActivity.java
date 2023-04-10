@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        replacefragment(new reviews());
+        //replacefragment(new reviews());
 
         tabLayout = findViewById(R.id.tablayout);
         viewPager2 = findViewById(R.id.viewpager);
@@ -55,14 +55,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
+    /**
     private void replacefragment(reviews reviews) {
         FragmentManager fragmentManager= getSupportFragmentManager();
         FragmentTransaction fragmentTransaction= fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.framelayout,reviews);
         fragmentTransaction.commit();
     }
-
+    **/
     private void setUpReviewModel(){
     String[] menunames = getResources().getStringArray(R.array.Menu_samples);
     String[] locationnames= getResources().getStringArray(R.array.Menu_samples);
