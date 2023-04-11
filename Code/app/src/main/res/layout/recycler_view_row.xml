@@ -2,26 +2,30 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/star1"
     android:layout_width="match_parent"
+    android:contentDescription="onestar"
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="359dp"
+        android:layout_height="102dp"
         app:cardCornerRadius="20dp"
-        app:cardElevation="8dp">
+        app:cardElevation="8dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="66dp">
+            android:layout_width="363dp"
+            android:layout_height="match_parent">
 
             <ImageView
                 android:id="@+id/foodpic"
-                android:layout_width="74dp"
-                android:layout_height="70dp"
+                android:layout_width="69dp"
+                android:layout_height="62dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/item_name"
                 app:layout_constraintStart_toStartOf="parent"
@@ -33,7 +37,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="sample location"
-                android:textSize="10sp"
+                android:textColor="#353230"
+                android:textSize="12sp"
+                android:textStyle="italic"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.039"
@@ -47,37 +53,103 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
                 android:text="sample food"
+                android:textColor="@color/purple_200"
+                android:textSize="16sp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/item_location"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.283"
+                app:layout_constraintHorizontal_bias="0.307"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.346" />
-
-            <ImageButton
-                android:id="@+id/star1"
-                android:layout_width="18dp"
-                android:layout_height="19dp"
-                android:layout_marginStart="28dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/foodpic"
-                app:layout_constraintTop_toBottomOf="@+id/item_location"
-                android:contentDescription="Rating"
-                app:layout_constraintVertical_bias="0.583"
-                app:srcCompat="@android:drawable/btn_star" />
+                app:layout_constraintVertical_bias="1.0" />
 
             <ImageButton
                 android:id="@+id/info"
-                android:layout_width="26dp"
-                android:layout_height="28dp"
+                android:layout_width="44dp"
+                android:layout_height="37dp"
+                android:backgroundTint="#FFFFFF"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.958"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:contentDescription="Info"
-                app:layout_constraintVertical_bias="0.184"
-                app:srcCompat="@android:drawable/ic_dialog_info" />
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@android:drawable/ic_menu_info_details" />
+
+            <ImageButton
+                android:id="@+id/imageButton2"
+                android:layout_width="34dp"
+                android:layout_height="27dp"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="7dp"
+                android:backgroundTint="#FAF7F7"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/foodpic"
+                app:layout_constraintTop_toBottomOf="@+id/item_location"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@android:drawable/star_off" />
+
+            <ImageButton
+                android:id="@+id/imageButton3"
+                android:layout_width="34dp"
+                android:layout_height="27dp"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="7dp"
+                android:backgroundTint="#FAF7F7"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.139"
+                app:layout_constraintStart_toEndOf="@+id/foodpic"
+                app:layout_constraintTop_toBottomOf="@+id/item_location"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@android:drawable/star_off" />
+
+            <ImageButton
+                android:id="@+id/imageButton4"
+                android:layout_width="34dp"
+                android:layout_height="27dp"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="7dp"
+                android:backgroundTint="#FAF7F7"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.279"
+                app:layout_constraintStart_toEndOf="@+id/foodpic"
+                app:layout_constraintTop_toBottomOf="@+id/item_location"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@android:drawable/star_off" />
+
+            <ImageButton
+                android:id="@+id/imageButton6"
+                android:layout_width="34dp"
+                android:layout_height="27dp"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="7dp"
+                android:backgroundTint="#FAF7F7"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.419"
+                app:layout_constraintStart_toEndOf="@+id/foodpic"
+                app:layout_constraintTop_toBottomOf="@+id/item_location"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@android:drawable/star_off" />
+
+            <ImageButton
+                android:id="@+id/imageButton7"
+                android:layout_width="34dp"
+                android:layout_height="27dp"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="7dp"
+                android:backgroundTint="#FAF7F7"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.559"
+                app:layout_constraintStart_toEndOf="@+id/foodpic"
+                app:layout_constraintTop_toBottomOf="@+id/item_location"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@android:drawable/star_off" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
