@@ -52,7 +52,7 @@ public class LoginPage extends AppCompatActivity {
         changeEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent emailChange = new Intent(LoginPage.this, ChangeEmail.class);
+                Intent emailChange = new Intent(LoginPage.this, ChangePassword.class);
                 startActivity(emailChange);
             }
         });
@@ -65,8 +65,15 @@ public class LoginPage extends AppCompatActivity {
         emailText = emailInput.getText().toString();
         passText = passwordInput.getText().toString();
         if(emailText.equals("a") && passText.equals("a")) {
-            Intent lgn = new Intent(LoginPage.this, MainActivity.class);
-            startActivity(lgn);
+            mAuth.signInWithEmailAndPassword("mldunn@email.wm.edu","password").addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        Intent loginAdmn = new Intent(LoginPage.this, MainActivity.class);
+                        startActivity(loginAdmn);
+                    }
+                }
+            });
         }
 
         mAuth.signInWithEmailAndPassword(emailText,passText).addOnCompleteListener(new OnCompleteListener<AuthResult>() {

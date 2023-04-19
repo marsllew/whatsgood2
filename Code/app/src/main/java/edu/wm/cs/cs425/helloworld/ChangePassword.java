@@ -15,23 +15,22 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
 
-public class ChangeEmail extends AppCompatActivity {
+public class ChangePassword extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private Button changeBttn;
 
-    private EditText newEmail, oldEmail, password;
+    private EditText newPassword, oldEmail, password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_change_email);
+        setContentView(R.layout.activity_change_password);
         mAuth = FirebaseAuth.getInstance();
-        changeBttn = findViewById(R.id.UpdateEmailButton);
-        newEmail = findViewById(R.id.changeEmailAdd);
-        oldEmail = findViewById(R.id.oldEmail);
+        changeBttn = findViewById(R.id.UpdatePasswordButton);
+        newPassword = findViewById(R.id.newPassword);
+        oldEmail = findViewById(R.id.currEmail);
         password = findViewById(R.id.currentPassword);
 
         changeBttn.setOnClickListener(new View.OnClickListener() {
@@ -44,8 +43,8 @@ public class ChangeEmail extends AppCompatActivity {
     }
 
     private void updateEmail () {
-        String newEmailText, oldEmailText, pass;
-        newEmailText = newEmail.getText().toString();
+        String newPasswordText, oldEmailText, pass;
+        newPasswordText = newPassword.getText().toString();
         oldEmailText = oldEmail.getText().toString();
         pass =password.getText().toString();
         mAuth.signInWithEmailAndPassword(oldEmailText,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -53,12 +52,12 @@ public class ChangeEmail extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    user.updateEmail(newEmailText).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    user.updatePassword(newPasswordText).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
-                                Intent changeSuc = new Intent(ChangeEmail.this, LoginPage.class);
-                                Toast.makeText(getApplicationContext(), "emailUpdated", Toast.LENGTH_LONG).show();
+                                Intent changeSuc = new Intent(ChangePassword.this, LoginPage.class);
+                                Toast.makeText(getApplicationContext(), "Password Updated", Toast.LENGTH_LONG).show();
                                 startActivity(changeSuc);
                             }
                         }

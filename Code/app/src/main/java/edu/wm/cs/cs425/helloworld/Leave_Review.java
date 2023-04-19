@@ -64,9 +64,10 @@ public class Leave_Review extends AppCompatActivity {
                 });
     }
 
-    private void getName(){
+    private String getName(){
         user = FirebaseAuth.getInstance().getCurrentUser();
         Toast.makeText(getApplicationContext(),user.getDisplayName(), Toast.LENGTH_LONG).show();
+        return user.getDisplayName();
     }
 
 }

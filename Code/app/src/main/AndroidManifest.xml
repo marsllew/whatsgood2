@@ -16,7 +16,7 @@
         android:theme="@style/Theme.HelloWorld"
         tools:targetApi="31">
         <activity
-            android:name=".ChangeEmail"
+            android:name=".ChangePassword"
             android:exported="false" />
         <activity
             android:name=".LoginRegistration"
