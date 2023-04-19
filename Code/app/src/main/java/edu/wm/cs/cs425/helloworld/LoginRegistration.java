@@ -14,10 +14,12 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class LoginRegistration extends AppCompatActivity {
 
-    private EditText emailText, passwordText;
+    private EditText emailText, passwordText, usernameText;
     private FirebaseAuth mAuth;
 
     @Override
@@ -30,6 +32,7 @@ public class LoginRegistration extends AppCompatActivity {
 
         emailText = findViewById(R.id.newEmail);
         passwordText = findViewById(R.id.newPassword);
+        usernameText = findViewById(R.id.newUsername);
         Button regFinish = findViewById(R.id.newLoginReg);
 
         regFinish.setOnClickListener(new View.OnClickListener(){
@@ -47,12 +50,21 @@ public class LoginRegistration extends AppCompatActivity {
     {
         String newEmail = emailText.getText().toString();
         String newPass = passwordText.getText().toString();
+        String newName = usernameText.getText().toString();
 
 
         mAuth.createUserWithEmailAndPassword(newEmail, newPass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    UserProfileChangeRequest nameUpdate = new UserProfileChangeRequest.Builder().setDisplayName(newName).build();
+                    user.updateProfile(nameUpdate).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            Toast.makeText(getApplicationContext(),"NameUpdate", Toast.LENGTH_LONG).show();
+                        }
+                    });
                     Toast.makeText(getApplicationContext(),"worked", Toast.LENGTH_LONG).show();
                     Intent login = new Intent(LoginRegistration.this, MainActivity.class);
                     startActivity(login);
