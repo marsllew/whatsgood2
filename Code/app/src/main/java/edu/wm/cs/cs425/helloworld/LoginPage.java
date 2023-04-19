@@ -30,6 +30,7 @@ public class LoginPage extends AppCompatActivity {
 
         Button loginbtn = (Button) findViewById(R.id.loginButton);
         Button newUser = (Button) findViewById(R.id.newUser);
+        Button changeEmail = (Button) findViewById(R.id.newEmail);
 
         loginbtn.setOnClickListener(new View.OnClickListener(){
 
@@ -45,6 +46,14 @@ public class LoginPage extends AppCompatActivity {
             public void onClick(View view) {
                 Intent reg = new Intent(LoginPage.this,LoginRegistration.class);
                 startActivity(reg);
+            }
+        });
+
+        changeEmail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent emailChange = new Intent(LoginPage.this, ChangeEmail.class);
+                startActivity(emailChange);
             }
         });
 
