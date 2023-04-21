@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -20,6 +21,7 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 public class LoginRegistration extends AppCompatActivity {
 
     private EditText emailText, passwordText, usernameText;
+    private TextView passShort, emailInvalid;
     private FirebaseAuth mAuth;
 
     @Override
@@ -33,6 +35,8 @@ public class LoginRegistration extends AppCompatActivity {
         emailText = findViewById(R.id.newEmail);
         passwordText = findViewById(R.id.newPassword);
         usernameText = findViewById(R.id.newUsername);
+        passShort = findViewById(R.id.txtNewPassShort);
+        emailInvalid = findViewById(R.id.txtLoginFail);
         Button regFinish = findViewById(R.id.newLoginReg);
 
         regFinish.setOnClickListener(new View.OnClickListener(){
@@ -51,26 +55,30 @@ public class LoginRegistration extends AppCompatActivity {
         String newEmail = emailText.getText().toString();
         String newPass = passwordText.getText().toString();
         String newName = usernameText.getText().toString();
-
-
+        if (newEmail.length() <= 0 || newPass.length() <= 0 || newName.length() <= 0){
+            Toast.makeText(getApplicationContext(),"Please Enter All Fields", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (newPass.length() <= 5){
+            passShort.setVisibility(View.VISIBLE);
+            return;
+        }
+        else {
+            passShort.setVisibility(View.INVISIBLE);
+        }
         mAuth.createUserWithEmailAndPassword(newEmail, newPass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                     UserProfileChangeRequest nameUpdate = new UserProfileChangeRequest.Builder().setDisplayName(newName).build();
-                    user.updateProfile(nameUpdate).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            Toast.makeText(getApplicationContext(),"NameUpdate", Toast.LENGTH_LONG).show();
-                        }
-                    });
-                    Toast.makeText(getApplicationContext(),"worked", Toast.LENGTH_LONG).show();
+                    user.updateProfile(nameUpdate);
                     Intent login = new Intent(LoginRegistration.this, MainActivity.class);
                     startActivity(login);
 
                 }
                 else{
+                    emailInvalid.setVisibility(View.VISIBLE);
                     Toast.makeText(getApplicationContext(),"failed", Toast.LENGTH_LONG).show();
                 }
             }

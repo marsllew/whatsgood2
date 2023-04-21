@@ -7,7 +7,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -17,16 +19,18 @@ import com.google.firebase.auth.FirebaseAuth;
 public class LoginPage extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    private TextView emailInput;
-    private TextView passwordInput;
+    private EditText emailInput;
+    private EditText passwordInput;
+    private TextView loginError;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
         mAuth = FirebaseAuth.getInstance();
-        emailInput =(TextView) findViewById(R.id.accountEmail);
-        passwordInput =(TextView) findViewById(R.id.accountPassword);
+        emailInput =(EditText) findViewById(R.id.accountEmail);
+        passwordInput =(EditText) findViewById(R.id.accountPassword);
+        loginError = (TextView) findViewById(R.id.mainLoginFail);
 
         Button loginbtn = (Button) findViewById(R.id.loginButton);
         Button newUser = (Button) findViewById(R.id.newUser);
@@ -64,6 +68,10 @@ public class LoginPage extends AppCompatActivity {
         String emailText, passText;
         emailText = emailInput.getText().toString();
         passText = passwordInput.getText().toString();
+        if(emailText.length() < 1 || passText.length() < 1){
+            Toast.makeText(getApplicationContext(),"Please Enter All Fields", Toast.LENGTH_LONG).show();
+            return;
+        }
         if(emailText.equals("a") && passText.equals("a")) {
             mAuth.signInWithEmailAndPassword("mldunn@email.wm.edu","password").addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
@@ -82,6 +90,10 @@ public class LoginPage extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     Intent loginSuc = new Intent(LoginPage.this, MainActivity.class);
                     startActivity(loginSuc);
+                }
+                else {
+                    loginError.setVisibility(View.VISIBLE);
+                    Toast.makeText(getApplicationContext(),"Login Failed", Toast.LENGTH_LONG).show();
                 }
             }
         });

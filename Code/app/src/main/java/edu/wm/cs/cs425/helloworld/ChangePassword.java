@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,7 +22,8 @@ public class ChangePassword extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private Button changeBttn;
 
-    private EditText newPassword, oldEmail, password;
+    private EditText newPassword, currEmail, password;
+    private TextView loginFail, newPassShort;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +32,10 @@ public class ChangePassword extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         changeBttn = findViewById(R.id.UpdatePasswordButton);
         newPassword = findViewById(R.id.newPassword);
-        oldEmail = findViewById(R.id.currEmail);
+        currEmail = findViewById(R.id.currEmail);
         password = findViewById(R.id.currentPassword);
+        loginFail = findViewById(R.id.txtLoginFail);
+        newPassShort = findViewById(R.id.txtNewPassShort);
 
         changeBttn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,11 +47,24 @@ public class ChangePassword extends AppCompatActivity {
     }
 
     private void updateEmail () {
-        String newPasswordText, oldEmailText, pass;
+        String newPasswordText, emailText, pass;
         newPasswordText = newPassword.getText().toString();
-        oldEmailText = oldEmail.getText().toString();
+        emailText = currEmail.getText().toString();
         pass =password.getText().toString();
-        mAuth.signInWithEmailAndPassword(oldEmailText,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+
+        if (emailText.length() <= 0 || newPasswordText.length() <= 0 || pass.length() <= 0){
+            Toast.makeText(getApplicationContext(),"Please Enter All Fields", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (newPasswordText.length() <= 5){
+            newPassShort.setVisibility(View.VISIBLE);
+            return;
+        }
+        else {
+            newPassShort.setVisibility(View.INVISIBLE);
+        }
+
+        mAuth.signInWithEmailAndPassword(emailText,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
@@ -60,10 +77,15 @@ public class ChangePassword extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(), "Password Updated", Toast.LENGTH_LONG).show();
                                 startActivity(changeSuc);
                             }
+
                         }
                     });
 
 
+                }
+                else{
+                    loginFail.setVisibility(View.VISIBLE);
+                    Toast.makeText(getApplicationContext(),"failed", Toast.LENGTH_LONG).show();
                 }
             }
         });
