@@ -28,7 +28,7 @@ public class favorites extends Fragment {
         ArrayList<ReviewModel> rvList = new ArrayList<>();
         rvList.add(rvMenu);
         RecyclerView recyclerView = view.findViewById(R.id.reviewRecycle);
-        RVAdapter menuadapt = new RVAdapter(getContext(), rvList);
+        RVAdapter menuadapt = new RVAdapter(getContext(), rvList, this);
         LinearLayoutManager llmMenu = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(llmMenu);
         recyclerView.setAdapter(menuadapt);

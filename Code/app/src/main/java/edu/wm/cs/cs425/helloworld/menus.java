@@ -52,7 +52,7 @@ public class menus extends Fragment {
             rvList.add(new ReviewModel(item, "Sadler"));
         }
         RecyclerView recyclerView = view.findViewById(R.id.menuRecycle);
-        RVAdapter menuadapt = new RVAdapter(getContext(), rvList);
+        RVAdapter menuadapt = new RVAdapter(getContext(), rvList, );
         LinearLayoutManager llmMenu = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(llmMenu);
         recyclerView.setAdapter(menuadapt);
