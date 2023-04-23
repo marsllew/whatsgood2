@@ -47,7 +47,7 @@ public class hours extends Fragment {
     };
 
 
-    @SuppressLint("MissingInflatedId")
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -63,76 +63,62 @@ public class hours extends Fragment {
         Sadlertv = view.findViewById(R.id.Sadlertv);
         Commonstv = view.findViewById(R.id.Commonstv);
         Marketplacetv = view.findViewById(R.id.Marketplacetv);
-    //Use on clicklistener so click and then view what the wait time
-    // and it is done by going through the if/eles statements
-        Sadlertv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        //Use if/else to set the texts with wait times
+        //corresponding to which dining hall it is
+        if (hour >= 8 && hour <= 10) {
+            Sadlertv.setText("Sadler Wait Time: " + SadlerWaitTime[0]);
+        } else if (hour == 11) {
+            Sadlertv.setText("Sadler Wait Time: " + SadlerWaitTime[1]);
+        } else if (hour == 12) {
+            Sadlertv.setText("Sadler Wait Time: " + SadlerWaitTime[2]);
+        } else if (hour >= 13 && hour <= 16) {
+            Sadlertv.setText("Sadler Wait Time: " + SadlerWaitTime[3]);
+        } else if (hour == 17) {
+            Sadlertv.setText("Sadler Wait Time: " + SadlerWaitTime[4]);
+        } else if (hour == 18) {
+            Sadlertv.setText("Sadler Wait Time: " + SadlerWaitTime[5]);
+        } else if (hour == 19) {
+            Sadlertv.setText("Sadler Wait Time: " + SadlerWaitTime[6]);
+        } else if (hour >= 20 && hour <= 24) {
+            Sadlertv.setText("Sadler Wait Time: " + SadlerWaitTime[7]);
+        } else {
+            Sadlertv.setText("Sadler Wait Time: " + "Closed");
+        }
 
-                if (hour >= 8 && hour <= 10) {
-                    Sadlertv.setText("Sadler Wait Time: " + SadlerWaitTime[0]);
-                } else if (hour == 11) {
-                    Sadlertv.setText("Sadler Wait Time: " + SadlerWaitTime[1]);
-                } else if (hour == 12) {
-                    Sadlertv.setText("Sadler Wait Time: " + SadlerWaitTime[2]);
-                } else if (hour >= 13 && hour <= 16) {
-                    Sadlertv.setText("Sadler Wait Time: " + SadlerWaitTime[3]);
-                } else if (hour == 17) {
-                    Sadlertv.setText("Sadler Wait Time: " + SadlerWaitTime[4]);
-                } else if (hour == 18) {
-                    Sadlertv.setText("Sadler Wait Time: " + SadlerWaitTime[5]);
-                } else if (hour == 19) {
-                    Sadlertv.setText("Sadler Wait Time: " + SadlerWaitTime[6]);
-                } else if (hour >= 20 || hour <= 7) {
-                    Sadlertv.setText("Sadler Wait Time: " + SadlerWaitTime[7]);
-                } else {
-                    Sadlertv.setText("Sadler Wait Time: " + "Closed");
-                }
-            }
-        });
 
-        Commonstv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (hour >= 7 && hour < 9) {
-                    Commonstv.setText("Commons Wait Time: " + CommonsWaitTime[0]);
-                } else if (hour >= 10 && hour < 12) {
-                    Commonstv.setText("Commons Wait Time: " + CommonsWaitTime[1]);
-                } else if (hour >= 13 && hour < 14) {
-                    Commonstv.setText("Commons Wait Time: " + CommonsWaitTime[2]);
-                } else if (hour >= 16 && hour < 17) {
-                    Commonstv.setText("Commons Wait Time: " + CommonsWaitTime[3]);
-                } else if (hour >= 17 && hour < 18) {
-                    Commonstv.setText("Commons Wait Time: " + CommonsWaitTime[4]);
-                } else if (hour >= 18 && hour < 19) {
-                    Commonstv.setText("Commons Wait Time: " + CommonsWaitTime[5]);
-                } else if (hour >= 19 && hour < 20) {
-                    Commonstv.setText("Commons Wait Time: " + CommonsWaitTime[6]);
-                } else {
-                    Commonstv.setText("Commons Wait Time: " + "Closed");
-                }
+        if (hour >= 7 && hour < 9) {
+            Commonstv.setText("Commons Wait Time: " + CommonsWaitTime[0]);
+        } else if (hour >= 10 && hour < 12) {
+            Commonstv.setText("Commons Wait Time: " + CommonsWaitTime[1]);
+        } else if (hour >= 13 && hour < 14) {
+            Commonstv.setText("Commons Wait Time: " + CommonsWaitTime[2]);
+        } else if (hour >= 16 && hour < 17) {
+            Commonstv.setText("Commons Wait Time: " + CommonsWaitTime[3]);
+        } else if (hour >= 17 && hour < 18) {
+            Commonstv.setText("Commons Wait Time: " + CommonsWaitTime[4]);
+        } else if (hour >= 18 && hour < 19) {
+            Commonstv.setText("Commons Wait Time: " + CommonsWaitTime[5]);
+        } else if (hour >= 19 && hour < 20) {
+            Commonstv.setText("Commons Wait Time: " + CommonsWaitTime[6]);
+        } else {
+            Commonstv.setText("Commons Wait Time: " + "Closed");
+        }
 
-                    }
-                    });
 
-        Marketplacetv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isWeekend) {
-                    Marketplacetv.setText("Marketplace is closed on Weekends");
-                } else if (hour >= 9 && hour < 10) {
-                    Marketplacetv.setText("Marketplace Wait Time: " + MarketplaceWaitTime[0]);
-                } else if (hour >= 10 && hour < 12) {
-                    Marketplacetv.setText("Marketplace Wait Time: " + MarketplaceWaitTime[1]);
-                } else if (hour >= 12 && hour < 13) {
-                    Marketplacetv.setText("Marketplace Wait Time: " + MarketplaceWaitTime[2]);
-                } else if (hour >= 13 && hour < 15) {
-                    Marketplacetv.setText("Marketplace Wait Time: " + MarketplaceWaitTime[3]);
-                } else {
-                    Marketplacetv.setText("Marketplace Wait Time: " + "Closed");
-                }
-            }
-                    });
+        if (isWeekend) {
+            Marketplacetv.setText("Marketplace is closed on Weekends");
+        } else if (hour >= 9 && hour < 10) {
+            Marketplacetv.setText("Marketplace Wait Time: " + MarketplaceWaitTime[0]);
+        } else if (hour >= 10 && hour < 12) {
+            Marketplacetv.setText("Marketplace Wait Time: " + MarketplaceWaitTime[1]);
+        } else if (hour >= 12 && hour < 13) {
+            Marketplacetv.setText("Marketplace Wait Time: " + MarketplaceWaitTime[2]);
+        } else if (hour >= 13 && hour < 15) {
+            Marketplacetv.setText("Marketplace Wait Time: " + MarketplaceWaitTime[3]);
+        } else {
+            Marketplacetv.setText("Marketplace Wait Time: " + "Closed");
+        }
+
         return view;
     }
 }
