@@ -52,7 +52,7 @@ public RVAdapter(Context context, ArrayList<ReviewModel> reviewModelArrayList){
             imageView= itemView.findViewById(R.id.foodpic);
             foodname = itemView.findViewById(R.id.item_name);
             locationname = itemView.findViewById(R.id.item_location);
-            itemView.findViewById(R.id.imageButton14).setOnClickListener(new View.OnClickListener(){
+            itemView.findViewById(R.id.favorite_heart).setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View view) {
                     Log.d("demo", "clickly");
