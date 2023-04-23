@@ -65,7 +65,7 @@ public class hours extends Fragment {
         Marketplacetv = view.findViewById(R.id.Marketplacetv);
         //Use if/else to set the texts with wait times
         //corresponding to which dining hall it is
-        if (hour >= 8 && hour <= 10) {
+        if (hour >= 7 && hour <= 10) {
             Sadlertv.setText("Sadler Wait Time: " + SadlerWaitTime[0]);
         } else if (hour == 11) {
             Sadlertv.setText("Sadler Wait Time: " + SadlerWaitTime[1]);
