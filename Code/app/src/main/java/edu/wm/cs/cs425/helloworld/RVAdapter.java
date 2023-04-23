@@ -1,11 +1,13 @@
 package edu.wm.cs.cs425.helloworld;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -50,6 +52,13 @@ public RVAdapter(Context context, ArrayList<ReviewModel> reviewModelArrayList){
             imageView= itemView.findViewById(R.id.foodpic);
             foodname = itemView.findViewById(R.id.item_name);
             locationname = itemView.findViewById(R.id.item_location);
+            itemView.findViewById(R.id.imageButton14).setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view) {
+                    Log.d("demo", "clickly");
+                }
+            });
+
         }
     }
 }
