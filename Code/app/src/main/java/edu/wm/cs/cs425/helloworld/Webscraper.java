@@ -9,52 +9,65 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
+import java.util.Dictionary;
+import java.util.Enumeration;
+import java.util.Hashtable;
 import java.util.List;
 
 public class Webscraper {
 
-    public List<List> webscrape() throws IOException {
+    public Dictionary<String, List<String>> webscrape() throws IOException {
+
         DateFormat dateFormat = new SimpleDateFormat("dd");
         Date date = new Date();
         String numberdate = new Integer(dateFormat.format(date)).toString();
-//        System.out.println(numberdate);
-        List<String> meals = Arrays.asList("breakfast", "lunch", "dinner");
-        List<String> breakfast_foods = new ArrayList<>();
-        List<String> lunch_foods = new ArrayList<>();
-        List<String> dinner_foods = new ArrayList<>();
-        List<String> late_night_foods = new ArrayList<>();
-        List<List> lists = Arrays.asList(breakfast_foods, lunch_foods, dinner_foods, late_night_foods);
+        Dictionary<String, List<String>> final_dict = new Hashtable<>();
 
         Thread x = new Thread(new Runnable() {
             @Override
             public void run() {
                 Document doc = null;
+                String now = "";
                 try {
                     doc = Jsoup.connect("https://menus.sodexomyway.com/BiteMenu/Menu?menuId=22802&locationId=10249001&whereami=http://dining.wm.edu/dining-near-me/sadler").get();
-//                    System.out.println(doc.title());
+
+                    DateFormat dateFormat = new SimpleDateFormat("kkmm");
+                    int time = new Integer(dateFormat.format(date));
+
+                    if (time < 1000) { now = "breakfast";}
+                    else if (time < 1500) {now = "lunch";}
+                    else if (time < 2000) {now = "dinner";}
+                    else now = "late.night";
+                    System.out.println(now + time);
+
+                    Dictionary<String ,String> ids = new Hashtable<>();
 
                     Elements day = doc.select("#menuid-" + numberdate + "-day");
-                    for (int i =0; i < 3; i++) {
-                        Elements meal = day.select(".accordion-block." + meals.get(i));
-                        Elements foods = meal.select("div.col-xs-9 a");
+                    Elements meal = day.select(".accordion-block." + now);
+                    Elements station = meal.select("div.bite-menu-course h5[id]");
+                    for (Element stat : station) { ids.put(stat.id(), stat.text()); }
+
+
+
+                    Enumeration<String> k = ids.keys();
+                    while (k.hasMoreElements()) {
+                        String key = k.nextElement();
+
+                        List<String> wompa = new ArrayList<>();
+                        Elements per_station = meal.select("ul.bite-menu-item[aria-describedby=" + key + "]");
+                        Elements foods = per_station.select("div.col-xs-9 a");
                         for (Element food : foods) {
-                            lists.get(i).add(food.text());
+                            wompa.add(food.text());
                         }
+
+                        final_dict.put(ids.get(key), wompa);
                     }
-                    Elements lnmeal = day.select(".accordion-block.late.night");
-                    Elements lnfoods = lnmeal.select("div.col-xs-9 a");
-                    for (Element lnfood : lnfoods) {
-                        late_night_foods.add(lnfood.text());
-                    }
+                    System.out.println(final_dict);
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-//                System.out.println(breakfast_foods);
-//                System.out.println(lunch_foods);
-//                System.out.println(dinner_foods);
-//                System.out.println(late_night_foods);
             }
         });
         x.start();
@@ -63,7 +76,7 @@ public class Webscraper {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        return lists;
+        return final_dict;
     }
 }
 
