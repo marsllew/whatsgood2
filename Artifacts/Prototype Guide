@@ -1,0 +1,14 @@
+How to install and run our prototype
+
+The user needs to download and open the Code folder in Android Studio in order to run the prototype. 
+
+
+What a user can do with our prototype
+
+The first page that will pop up when opening the application is the log in screen. The user will be prompted a login page for existing users that have an email and password stored linked to the Firestore Authentication. If the user has not created an account they can click the "Create New User" button to create a username, email, and password linked to their account. There is also a "Change Password" button if a user wants to create a new password. It will take them to a screen that asks for their account email, previous password, and new password to update it.
+
+Once the user logs into an account or creates an account, it will take them to the "Hours" tab that informs a user of the dining hours for each dining option as well as an estimate of the wait times of each dining option. If they click on the "Menus" tab, they will be shown a page that displays menu options from Sadler dining hall. For future updates, there will be an option to choose which dining hall menu to look at. The pictures for each menu item will also be updated in a future release. The user can scroll down on this page to see additional menu items that don't show up on the page. Each menu item also has a star if a user wants to leave a review but this part has not been coded yet.
+
+The "Reviews" tab is not currently functional but shows a sample of what should be functional in a later release. It will show a list of reviews that other users have posted so that a user can decide what dining hall to choose based on the reviews. The user will be able to see photos uploaded as well as text and a rating out of 5 stars for a menu item.
+
+The "Favorites" tab has not been worked on yet because it requires information from previous tabs that have not been finished yet. The "Favorites" page will display a menu of items that the user account has favorited in the "Menus" tab and the user will receive notifications when the menu item comes into the dining option again.
