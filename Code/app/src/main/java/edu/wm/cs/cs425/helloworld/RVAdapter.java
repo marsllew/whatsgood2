@@ -1,6 +1,8 @@
 package edu.wm.cs.cs425.helloworld;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +15,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class RVAdapter extends RecyclerView.Adapter<RVAdapter.MyViewHolder> {
-Context context;
-ArrayList<ReviewModel> reviewModelArrayList;
-public RVAdapter(Context context, ArrayList<ReviewModel> reviewModelArrayList){
- this.context = context;
- this.reviewModelArrayList = reviewModelArrayList;
-}
+    Context context;
+    ArrayList<ReviewModel> reviewModelArrayList;
+    public RVAdapter(Context context, ArrayList<ReviewModel> reviewModelArrayList){
+        this.context = context;
+        this.reviewModelArrayList = reviewModelArrayList;
+    }
     @NonNull
     @Override
     public RVAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -50,6 +52,28 @@ public RVAdapter(Context context, ArrayList<ReviewModel> reviewModelArrayList){
             imageView= itemView.findViewById(R.id.foodpic);
             foodname = itemView.findViewById(R.id.item_name);
             locationname = itemView.findViewById(R.id.item_location);
+            itemView.findViewById(R.id.favorite_heart).setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view) {
+                    Log.d("demo", "clickly");
+                }
+            });
+            itemView.findViewById(R.id.rstar1).setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view) {
+                   Intent intent = new Intent(view.getContext(), Leave_Review.class);
+                    view.getContext().startActivity(intent);
+                }
+            });
+
+            itemView.findViewById(R.id.info).setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view) {
+                    Log.d("demo", "clickly");
+                }
+            });
+
         }
     }
 }
+
