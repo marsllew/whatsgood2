@@ -80,23 +80,24 @@ public class LoginPage extends AppCompatActivity {
                         Intent loginAdmn = new Intent(LoginPage.this, MainActivity.class);
                         startActivity(loginAdmn);
                     }
+
                 }
             });
         }
-
-        mAuth.signInWithEmailAndPassword(emailText,passText).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    Intent loginSuc = new Intent(LoginPage.this, MainActivity.class);
-                    startActivity(loginSuc);
+        else {
+            mAuth.signInWithEmailAndPassword(emailText, passText).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        Intent loginSuc = new Intent(LoginPage.this, MainActivity.class);
+                        startActivity(loginSuc);
+                    } else {
+                        loginError.setVisibility(View.VISIBLE);
+                        Toast.makeText(getApplicationContext(), "Login Failed", Toast.LENGTH_LONG).show();
+                    }
                 }
-                else {
-                    loginError.setVisibility(View.VISIBLE);
-                    Toast.makeText(getApplicationContext(),"Login Failed", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
+            });
+        }
     }
 
 }
