@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,11 +13,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class LoginRegistration extends AppCompatActivity {
 
@@ -73,6 +82,23 @@ public class LoginRegistration extends AppCompatActivity {
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                     UserProfileChangeRequest nameUpdate = new UserProfileChangeRequest.Builder().setDisplayName(newName).build();
                     user.updateProfile(nameUpdate);
+                    FirebaseFirestore db = FirebaseFirestore.getInstance();
+                    String uid = user.getUid();
+                    DocumentReference userRef = db.collection("users").document(uid);
+                    Map<String, Object> userData = new HashMap<>();
+                    userData.put("username", newName);
+                    userData.put("email", newEmail);
+                    userRef.set(userData).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Log.d("UserAdded", "User has been added to Firestore");
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w("ErrorAddingUser", "Could not add user to Firestore", e);
+                        }
+                    });
                     Intent login = new Intent(LoginRegistration.this, MainActivity.class);
                     startActivity(login);
 
