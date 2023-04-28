@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -33,10 +35,23 @@ public class Leave_Review extends AppCompatActivity {
         initializeViews();
         db = FirebaseFirestore.getInstance();
 
+        Bundle extras = getIntent().getExtras();
+        String food = extras.getString("food");
+        String location = extras.getString("location");
+        int rating = extras.getInt("rating");
+        int pic = extras.getInt("image");
+
+        TextView foodT = findViewById(R.id.Sampletxt1), locationT = findViewById(R.id.Sampletxt);
+        foodT.setText(food);
+        locationT.setText(location);
+
+        ImageView image = findViewById(R.id.review_pic);
+        image.setImageResource(pic);
+
         submit.setOnClickListener(view -> {
             String text = reviewText.getText().toString();
 
-            Review review = new Review(0, text);
+            Review review = new Review(rating, text, food, location);
             uploadReview(review);
         });
     }
@@ -48,7 +63,9 @@ public class Leave_Review extends AppCompatActivity {
 
     public void uploadReview(Review review) {
         db.collection("Reviews")
-                .document("Salad")
+                .document(review.getLocation())
+                .collection(review.getFood())
+                .document(user.getUid())
                 .set(review.getText())
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override

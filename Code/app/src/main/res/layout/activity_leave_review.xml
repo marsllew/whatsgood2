@@ -22,7 +22,7 @@
         app:layout_constraintVertical_bias="0.022" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/review_pic"
         android:layout_width="101dp"
         android:layout_height="91dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -43,7 +43,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toEndOf="@+id/review_pic"
         app:layout_constraintTop_toBottomOf="@+id/Whats_Good"
         app:layout_constraintVertical_bias="0.066" />
 
@@ -74,7 +74,7 @@
             android:id="@+id/inputText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="hint" />
+            android:hint="Feedback:" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
