@@ -15,7 +15,7 @@ public class VPAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position){
             case 0: return new hours();
-            case 1: return new menus();
+            case 1: return new dhmenu();
             case 2: return new reviews();
             case 3: return new favorites();
             default: return new hours();
