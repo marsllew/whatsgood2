@@ -44,7 +44,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.MyViewHolder> {
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
         ImageView imageView;
-        TextView foodname, locationname;
+        TextView foodname, locationname, calories;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -52,6 +52,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.MyViewHolder> {
             imageView= itemView.findViewById(R.id.foodpic);
             foodname = itemView.findViewById(R.id.item_name);
             locationname = itemView.findViewById(R.id.item_location);
+            calories = itemView.findViewById(R.id.calories);
             itemView.findViewById(R.id.favorite_heart).setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View view) {
