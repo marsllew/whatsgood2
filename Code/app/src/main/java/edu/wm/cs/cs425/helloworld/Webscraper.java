@@ -63,7 +63,11 @@ public class Webscraper {
                         //System.out.println("per station " + per_station);
                         Elements foods = per_station.select("div.col-xs-9 a");
                         for (Element food : foods) {
-                            wompa.add(food.text());
+                            String food_id = food.attr("data-number");
+                            //System.out.println(food_id);
+                            Elements calories = per_station.select("[data-number=" + food_id + "]");
+                            //System.out.println(calories.text());
+                            wompa.add(calories.text());
                         }
 
                         final_dict.put(ids.get(key), wompa);

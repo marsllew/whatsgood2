@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.common.util.NumberUtils;
+
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -38,10 +40,22 @@ public class menus extends Fragment {
         }
 
         Enumeration<String> k = final_dict.keys();
+        String name = "";
+        String cals = "";
         while (k.hasMoreElements()) {
             String key = k.nextElement();
             for (String item : final_dict.get(key)) {
-                rvList.add(new ReviewModel(item, key, "0 Cals"));
+                for (int i=0; i < item.length(); i++){
+                    //System.out.println(item);
+                    //System.out.println(item.charAt(i));
+                    if (Character.isDigit(item.charAt(i))) {
+                        name = item.substring(0, i);
+                        cals = item.substring(i);
+                        break;
+                    }
+                    else { name = item; cals = "0cal"; }
+                }
+                rvList.add(new ReviewModel(name, key, cals));
             }
         }
 
