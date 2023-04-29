@@ -43,9 +43,13 @@ public class Webscraper {
 
                     Dictionary<String ,String> ids = new Hashtable<>();
 
-                    Elements day = doc.select("#menuid-" + numberdate + "-day");
-                    Elements meal = day.select(".accordion-block." + now);
+                    //System.out.println(numberdate);
+                    Elements day = doc.select("div.bite-day-menu");
+                    //System.out.println("day " + day);
+                    Elements meal = day.select("div.accordion-block." + now);
+                    //System.out.println("meal " + meal);
                     Elements station = meal.select("div.bite-menu-course h5[id]");
+                    //System.out.println("stattion " + station);
                     for (Element stat : station) { ids.put(stat.id(), stat.text()); }
 
 
@@ -56,6 +60,7 @@ public class Webscraper {
 
                         List<String> wompa = new ArrayList<>();
                         Elements per_station = meal.select("ul.bite-menu-item[aria-describedby=" + key + "]");
+                        //System.out.println("per station " + per_station);
                         Elements foods = per_station.select("div.col-xs-9 a");
                         for (Element food : foods) {
                             wompa.add(food.text());
