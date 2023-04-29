@@ -46,7 +46,7 @@ public class Leave_Review extends AppCompatActivity {
         locationT.setText(location);
 
         ImageView image = findViewById(R.id.review_pic);
-        image.setImageResource(pic);
+        image.setImageResource(R.drawable.food);
 
         submit.setOnClickListener(view -> {
             String text = reviewText.getText().toString();

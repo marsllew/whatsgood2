@@ -41,7 +41,7 @@ public class menus extends Fragment {
         while (k.hasMoreElements()) {
             String key = k.nextElement();
             for (String item : final_dict.get(key)) {
-                rvList.add(new ReviewModel(item, key));
+                rvList.add(new ReviewModel(item, key, "0 Cals"));
             }
         }
 

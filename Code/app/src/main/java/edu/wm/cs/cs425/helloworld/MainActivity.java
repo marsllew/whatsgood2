@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
     String[] locationnames= getResources().getStringArray(R.array.Menu_samples);
 
     for (int i = 0; i<menunames.length; i++){
-        reviewModelArrayList.add(new ReviewModel(menunames[i],locationnames[i]));
+        reviewModelArrayList.add(new ReviewModel(menunames[i],locationnames[i], "0 Cals"));
     }
     }
 }

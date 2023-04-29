@@ -5,11 +5,14 @@ public class ReviewModel {
     String FoodLocation;
     int image;
 
+    String calories;
 
-    public ReviewModel(String foodName, String foodLocation) {
+
+    public ReviewModel(String foodName, String foodLocation, String cal) {
         this.FoodName = foodName;
         this.FoodLocation = foodLocation;
         this.image = image;
+        this.calories = cal;
     }
 
     public String getFoodName() {
@@ -23,4 +26,6 @@ public class ReviewModel {
     public int getImage() {
         return image;
     }
+
+    public String getCalories() { return calories; }
 }

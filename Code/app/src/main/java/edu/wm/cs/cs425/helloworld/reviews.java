@@ -22,7 +22,7 @@ public class reviews extends Fragment {
         // Inflate the layout for this fragment
 
 
-        ReviewModel rvMenu = new ReviewModel("Salad", "Sadler");
+        ReviewModel rvMenu = new ReviewModel("Salad", "Sadler", "0 Cals");
         ArrayList<ReviewModel> rvList = new ArrayList<>();
         rvList.add(rvMenu);
         RecyclerView recyclerView = view.findViewById(R.id.reviewRecycle);

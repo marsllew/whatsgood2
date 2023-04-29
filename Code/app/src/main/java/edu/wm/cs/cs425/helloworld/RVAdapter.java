@@ -35,6 +35,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.MyViewHolder> {
     public void onBindViewHolder(@NonNull RVAdapter.MyViewHolder holder, int position) {
         holder.foodname.setText(reviewModelArrayList.get(position).getFoodName());
         holder.locationname.setText(reviewModelArrayList.get(position).getFoodLocation());
+        holder.calories.setText(reviewModelArrayList.get(position).getCalories());
     }
 
     @Override
