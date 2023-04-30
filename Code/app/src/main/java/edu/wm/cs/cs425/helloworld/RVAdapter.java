@@ -14,6 +14,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import java.util.Map;
+import java.util.HashMap;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.OnFailureListener;
+
+
+
+
+
+
 public class RVAdapter extends RecyclerView.Adapter<RVAdapter.MyViewHolder> {
     Context context;
     ArrayList<ReviewModel> reviewModelArrayList;
@@ -54,10 +68,29 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.MyViewHolder> {
             foodname = itemView.findViewById(R.id.item_name);
             locationname = itemView.findViewById(R.id.item_location);
             calories = itemView.findViewById(R.id.calories);
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            String uid = user.getUid();
             itemView.findViewById(R.id.favorite_heart).setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View view) {
                     Log.d("demo", "clickly");
+                    Map<String, Object> data = new HashMap<>();
+                    data.put("locationname", locationname.getText().toString());
+                    data.put("calories", calories.getText().toString());
+                    db.collection("users").document(uid).collection("favorites")
+                            .document(foodname.getText().toString()).set(data).addOnSuccessListener(new OnSuccessListener<Void>(){
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    Log.d("Firestore", "added " + foodname + " to database");
+                                }
+                            }).addOnFailureListener(new OnFailureListener(){
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.w("Firestore", "Could not add to database");
+                                }
+                            });
+
                 }
             });
             itemView.findViewById(R.id.rstar1).setOnClickListener(new View.OnClickListener(){
