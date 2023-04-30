@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -50,6 +51,13 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.MyViewHolder> {
         holder.foodname.setText(reviewModelArrayList.get(position).getFoodName());
         holder.locationname.setText(reviewModelArrayList.get(position).getFoodLocation());
         holder.calories.setText(reviewModelArrayList.get(position).getCalories());
+        holder.itemView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, ReviewViewPage.class);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
