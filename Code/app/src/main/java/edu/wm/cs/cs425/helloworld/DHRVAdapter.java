@@ -21,7 +21,7 @@ public class DHRVAdapter extends RecyclerView.Adapter<DHRVAdapter.MyViewHolder> 
     public DHRVAdapter( Context context,ArrayList<DHModel> dhModelArrayList){
         this.context = context;
         this.dhModelArrayList = dhModelArrayList;
-        }
+    }
     @NonNull
     @Override
     public DHRVAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -30,7 +30,7 @@ public class DHRVAdapter extends RecyclerView.Adapter<DHRVAdapter.MyViewHolder> 
 
         return new DHRVAdapter.MyViewHolder(view);
 
-        }
+    }
 
     @Override
     public void onBindViewHolder(@NonNull DHRVAdapter.MyViewHolder holder, int position) {
@@ -39,25 +39,32 @@ public class DHRVAdapter extends RecyclerView.Adapter<DHRVAdapter.MyViewHolder> 
         holder.itemView.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                AppCompatActivity activity = (AppCompatActivity)view.getContext();
-                menus menus = new menus();
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.DHlayout,menus).addToBackStack(null).commit();
+                if ( position == 1){
+                    AppCompatActivity activity = (AppCompatActivity)view.getContext();
+                    menus menus = new menus();
+                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.DHlayout,menus).addToBackStack("Sad").commit();
+                }
+                else{
+                    AppCompatActivity activity = (AppCompatActivity)view.getContext();
+                    cafmenu cafmenu = new cafmenu();
+                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.DHlayout,cafmenu).addToBackStack(null).commit();
+                }
             }
         });
-        }
+    }
 
     @Override
     public int getItemCount() {
         return dhModelArrayList.size();
-        }
+    }
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         TextView DHname;
 
-    public MyViewHolder(@NonNull View itemView) {
-        super(itemView);
+        public MyViewHolder(@NonNull View itemView) {
+            super(itemView);
 
-        DHname = itemView.findViewById(R.id.DHname);
+            DHname = itemView.findViewById(R.id.DHname);
 
 
-    }
-}}
+        }
+    }}
