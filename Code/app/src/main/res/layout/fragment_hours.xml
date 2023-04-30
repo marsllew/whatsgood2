@@ -32,7 +32,7 @@
         android:layout_height="65dp"
         android:layout_marginStart="4dp"
         android:layout_marginTop="44dp"
-        android:text="Commons Dining Hall: Monday-Friday: 7:00AM-10:00PM"
+        android:text="Commons Dining Hall: Monday-Sunday: 7:00AM-10:00PM"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
