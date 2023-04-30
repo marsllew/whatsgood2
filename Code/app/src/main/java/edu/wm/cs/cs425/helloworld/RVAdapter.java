@@ -78,6 +78,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.MyViewHolder> {
                     Map<String, Object> data = new HashMap<>();
                     data.put("locationname", locationname.getText().toString());
                     data.put("calories", calories.getText().toString());
+                    data.put("foodname", foodname.getText().toString());
                     db.collection("users").document(uid).collection("favorites")
                             .document(foodname.getText().toString()).set(data).addOnSuccessListener(new OnSuccessListener<Void>(){
                                 @Override

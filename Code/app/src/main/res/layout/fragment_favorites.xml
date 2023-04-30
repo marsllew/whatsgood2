@@ -17,7 +17,7 @@
         android:text="My Favorites" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/reviewRecycle"
+        android:id="@+id/favoritesRecycle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="top|center_horizontal"
