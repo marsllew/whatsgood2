@@ -65,19 +65,19 @@ public class hours extends Fragment {
         Marketplacetv = view.findViewById(R.id.Marketplacetv);
         //Use if/else to set the texts with wait times
         //corresponding to which dining hall it is
-        if (hour >= 7 && hour <= 10) {
+        if (hour >= 7 && hour < 10) {
             Sadlertv.setText("Sadler Wait Time: " + SadlerWaitTime[0]);
-        } else if (hour == 11) {
+        } else if (hour >= 10 && hour < 11) {
             Sadlertv.setText("Sadler Wait Time: " + SadlerWaitTime[1]);
-        } else if (hour == 12) {
+        } else if (hour >= 11 && hour < 12) {
             Sadlertv.setText("Sadler Wait Time: " + SadlerWaitTime[2]);
-        } else if (hour >= 13 && hour <= 16) {
+        } else if (hour >= 12 && hour < 16) {
             Sadlertv.setText("Sadler Wait Time: " + SadlerWaitTime[3]);
-        } else if (hour == 17) {
+        } else if (hour >= 16 && hour < 17) {
             Sadlertv.setText("Sadler Wait Time: " + SadlerWaitTime[4]);
-        } else if (hour == 18) {
+        } else if (hour >= 17 && hour < 18) {
             Sadlertv.setText("Sadler Wait Time: " + SadlerWaitTime[5]);
-        } else if (hour == 19) {
+        } else if (hour >= 18 && hour < 20) {
             Sadlertv.setText("Sadler Wait Time: " + SadlerWaitTime[6]);
         } else if (hour >= 20 && hour <= 24) {
             Sadlertv.setText("Sadler Wait Time: " + SadlerWaitTime[7]);
@@ -90,7 +90,7 @@ public class hours extends Fragment {
             Commonstv.setText("Commons Wait Time: " + CommonsWaitTime[0]);
         } else if (hour >= 10 && hour < 12) {
             Commonstv.setText("Commons Wait Time: " + CommonsWaitTime[1]);
-        } else if (hour >= 13 && hour < 14) {
+        } else if (hour >= 12 && hour < 14) {
             Commonstv.setText("Commons Wait Time: " + CommonsWaitTime[2]);
         } else if (hour >= 16 && hour < 17) {
             Commonstv.setText("Commons Wait Time: " + CommonsWaitTime[3]);
