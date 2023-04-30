@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -36,6 +37,15 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.MyViewHolder> {
         holder.foodname.setText(reviewModelArrayList.get(position).getFoodName());
         holder.locationname.setText(reviewModelArrayList.get(position).getFoodLocation());
         holder.calories.setText(reviewModelArrayList.get(position).getCalories());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                AppCompatActivity activity = (AppCompatActivity)view.getContext();
+                displayreviews displayreviews = new displayreviews();
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.reviewlayout,displayreviews).addToBackStack(null).commit();
+            }
+        });
     }
 
     @Override
@@ -51,7 +61,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.MyViewHolder> {
             super(itemView);
 
             imageView= itemView.findViewById(R.id.foodpic);
-            foodname = itemView.findViewById(R.id.item_name);
+            foodname = itemView.findViewById(R.id.username);
             locationname = itemView.findViewById(R.id.item_location);
             calories = itemView.findViewById(R.id.calories);
             itemView.findViewById(R.id.favorite_heart).setOnClickListener(new View.OnClickListener(){

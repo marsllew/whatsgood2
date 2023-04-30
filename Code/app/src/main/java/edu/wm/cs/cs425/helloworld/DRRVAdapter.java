@@ -37,14 +37,7 @@ public class DRRVAdapter extends RecyclerView.Adapter<DRRVAdapter.MyViewHolder> 
         holder.foodName.setText(reviewDisplayModelArrayList.get(position).getLocationname());
         holder.foodName.setText(reviewDisplayModelArrayList.get(position).getusername());
 
-        holder.itemView.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                AppCompatActivity activity = (AppCompatActivity)view.getContext();
-                displayreviews displayreviews = new displayreviews();
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.reviewlayout,displayreviews).addToBackStack(null).commit();
-            }
-        });
+
     }
 
     @Override
