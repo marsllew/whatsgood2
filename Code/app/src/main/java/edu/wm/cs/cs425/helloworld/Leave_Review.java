@@ -13,11 +13,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -30,6 +33,10 @@ public class Leave_Review extends AppCompatActivity {
     private Button submit;
     private FirebaseAuth mAuth;
     private FirebaseUser user;
+    double avgRating;
+
+    double oldRating;
+    double reviewCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +49,7 @@ public class Leave_Review extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         String food = extras.getString("food");
         String location = extras.getString("location");
-        int rating = extras.getInt("rating");
+        double rating = (double) extras.getInt("rating");
         int pic = extras.getInt("image");
         String corlocation = location.replace("/", " or ");
         Log.d(TAG, corlocation);
@@ -85,23 +92,56 @@ public class Leave_Review extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-
+                        Log.d(TAG, "document worked");
                     }
                 });
 
-        Map<String, Object> ratingStore = new HashMap<>();
-        ratingStore.put("rating", review.getRating());
-        db.collection("Reviews")
+        DocumentReference rateRef = db.collection("Reviews")
                 .document("Sadler")
                 .collection(review.getLocation())
-                .document(review.getFood())
-                .set(ratingStore)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
+                .document(review.getFood());
+        rateRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()){
+                    DocumentSnapshot document = task.getResult();
+                    Log.d(TAG, "document retrieved");
+                    if (document.exists()){
+                        if(document.contains("rating")){
+                            oldRating = (double) document.get("rating");
+                            Log.d(TAG, String.valueOf(oldRating));
+                        } else{
+                            avgRating = review.getRating();
+                        }
 
+                        if(document.contains("revCount")){
+                            reviewCount = (double) document.get("revCount");
+                            Log.d(TAG, "oldReviewCount");
+                            Log.d(TAG, String.valueOf(reviewCount));
+                        } else{
+                            reviewCount = 0;
+                        }
                     }
-                });
+                }
+                Log.d(TAG, String.valueOf(reviewCount));
+                Map<String, Object> ratingStore = new HashMap<>();
+                avgRating = ((oldRating*reviewCount) + review.getRating())/(reviewCount+1);
+                ratingStore.put("rating", avgRating);
+                ratingStore.put("revCount", reviewCount+1);
+                db.collection("Reviews")
+                        .document("Sadler")
+                        .collection(review.getLocation())
+                        .document(review.getFood())
+                        .set(ratingStore)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                Log.d(TAG, "rating worked");
+                            }
+                        });
+            }
+        });
+
 
 
         /***
