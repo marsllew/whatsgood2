@@ -1,6 +1,7 @@
 package edu.wm.cs.cs425.helloworld;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,7 @@ public class DRRVAdapter extends RecyclerView.Adapter<DRRVAdapter.MyViewHolder> 
     @NonNull
     @Override
     public DRRVAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        Context newContext = parent.getContext();
         LayoutInflater inflater= LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.displayreviews_recycler,parent,false);
         return new DRRVAdapter.MyViewHolder(view);
@@ -33,9 +35,13 @@ public class DRRVAdapter extends RecyclerView.Adapter<DRRVAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull DRRVAdapter.MyViewHolder holder, int position) {
-        holder.foodName.setText(reviewDisplayModelArrayList.get(position).getFoodname());
-        holder.foodName.setText(reviewDisplayModelArrayList.get(position).getLocationname());
-        holder.foodName.setText(reviewDisplayModelArrayList.get(position).getusername());
+        String nameFood = reviewDisplayModelArrayList.get(position).getFoodname();
+        holder.foodName.setText(nameFood);
+        Log.d("Name", reviewDisplayModelArrayList.get(position).getFoodname());
+        //holder.foodName.setText(reviewDisplayModelArrayList.get(position).getLocationname());
+        Log.d("Location", reviewDisplayModelArrayList.get(position).getLocationname());
+        //holder.foodName.setText(reviewDisplayModelArrayList.get(position).getusername());
+        Log.d("username", reviewDisplayModelArrayList.get(position).getusername());
 
 
     }

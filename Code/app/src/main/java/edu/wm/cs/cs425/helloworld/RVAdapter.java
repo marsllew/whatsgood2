@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -42,8 +44,12 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.MyViewHolder> {
             @Override
             public void onClick(View view) {
                 AppCompatActivity activity = (AppCompatActivity)view.getContext();
+                Fragment oldFrag = activity.getSupportFragmentManager().findFragmentByTag("Sad");
+                if(oldFrag == null){
+                    Log.d("frag", "oldfrag is null");
+                }
                 displayreviews displayreviews = new displayreviews();
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.reviewlayout,displayreviews).addToBackStack(null).commit();
+                //oldFrag.getChildFragmentManager().beginTransaction().replace(oldFrag.getId(),displayreviews).addToBackStack(null).commit();
             }
         });
     }
