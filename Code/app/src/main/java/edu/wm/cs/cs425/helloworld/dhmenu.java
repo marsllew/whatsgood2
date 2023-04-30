@@ -23,7 +23,7 @@ public class dhmenu extends Fragment {
 
 
         DHModel dhModel = new DHModel("Sadler");
-        DHModel dhModel1 = new DHModel("Commons");
+        DHModel dhModel1 = new DHModel("The Commons");
         ArrayList<DHModel> dhModelArrayList = new ArrayList<>();
         dhModelArrayList.add(dhModel);
         dhModelArrayList.add(dhModel1);

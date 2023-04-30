@@ -3,6 +3,7 @@ package edu.wm.cs.cs425.helloworld;
 public class ReviewModel {
     String FoodName;
     String FoodLocation;
+
     int image;
 
 

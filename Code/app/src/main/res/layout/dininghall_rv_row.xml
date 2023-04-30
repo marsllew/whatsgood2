@@ -4,17 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/star1"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:contentDescription="onestar"
-    android:layout_height="wrap_content">
+    android:translationY="50dp">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="363dp"
-        android:layout_height="130dp"
+        android:layout_width="359dp"
+        android:layout_height="162dp"
         android:layout_marginBottom="10dp"
         android:outlineAmbientShadowColor="@color/purple_500"
 
         app:cardCornerRadius="20dp"
-        app:cardElevation="8dp"
+        app:cardElevation="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,7 +32,7 @@
                 android:fontFamily="@font/chango"
                 android:text="Dining Hall"
                 android:textColor="@color/purple_200"
-                android:textSize="16sp"
+                android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
