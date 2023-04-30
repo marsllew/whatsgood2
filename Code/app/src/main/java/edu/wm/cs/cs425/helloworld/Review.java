@@ -1,19 +1,19 @@
 package edu.wm.cs.cs425.helloworld;
 
 public class Review {
-    int rating;
+    double rating;
     String text;
     String food;
     String location;
 
-    public Review(int rating, String text, String food, String location) {
+    public Review(double rating, String text, String food, String location) {
         this.rating = rating;
         this.text = text;
         this.food = food;
         this.location = location;
     }
 
-    public int getRating() {
+    public double getRating() {
         return rating;
     }
 
