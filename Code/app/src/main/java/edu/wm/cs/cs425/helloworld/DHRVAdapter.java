@@ -39,9 +39,16 @@ public class DHRVAdapter extends RecyclerView.Adapter<DHRVAdapter.MyViewHolder> 
         holder.itemView.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                AppCompatActivity activity = (AppCompatActivity)view.getContext();
-                menus menus = new menus();
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.DHlayout,menus).addToBackStack(null).commit();
+                if ( position == 1){
+                    AppCompatActivity activity = (AppCompatActivity)view.getContext();
+                    menus menus = new menus();
+                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.DHlayout,menus).addToBackStack(null).commit();
+                }
+                else{
+                    AppCompatActivity activity = (AppCompatActivity)view.getContext();
+                    cafmenu cafmenu = new cafmenu();
+                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.DHlayout,cafmenu).addToBackStack(null).commit();
+                }
             }
         });
         }
