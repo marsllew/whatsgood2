@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     VPAdapter vpAdapter;
 
     ArrayList<ReviewModel> reviewModelArrayList = new ArrayList<>();
+    ArrayList<DHModel> dhModelArrayList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
