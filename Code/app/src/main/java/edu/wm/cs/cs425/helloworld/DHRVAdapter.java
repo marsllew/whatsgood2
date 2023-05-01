@@ -41,13 +41,14 @@ public class DHRVAdapter extends RecyclerView.Adapter<DHRVAdapter.MyViewHolder> 
             public void onClick(View view) {
                 if ( position == 1){
                     AppCompatActivity activity = (AppCompatActivity)view.getContext();
-                    menus menus = new menus();
-                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.DHlayout,menus).addToBackStack(null).commit();
+                    cafmenu cafmenu = new cafmenu();
+                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.DHlayout,cafmenu).addToBackStack(null).commit();
                 }
                 else{
                     AppCompatActivity activity = (AppCompatActivity)view.getContext();
-                    cafmenu cafmenu = new cafmenu();
-                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.DHlayout,cafmenu).addToBackStack(null).commit();
+
+                    menus menus = new menus();
+                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.DHlayout,menus).addToBackStack(null).commit();
                 }
             }
         });
