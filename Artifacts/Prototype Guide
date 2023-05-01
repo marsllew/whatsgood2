@@ -5,10 +5,41 @@ The user needs to download and open the Code folder in Android Studio in order t
 
 What a user can do with our prototype
 
-The first page that will pop up when opening the application is the log in screen. The user will be prompted a login page for existing users that have an email and password stored linked to the Firestore Authentication. If the user has not created an account they can click the "Create New User" button to create a username, email, and password linked to their account. There is also a "Change Password" button if a user wants to create a new password. It will take them to a screen that asks for their account email, previous password, and new password to update it.
+The first page that will pop up when opening the application is the log in screen. The user will be prompted a login page for existing users that have an email and password stored linked to the Firestore Authentication. If the user has not created an account they can click the "Create New User" button to create a username, email, and password linked to their account. There is also a "Change Password" button if a user wants to create a new password. It will take them to a screen that asks for their account email, previous password, and new password to update it. If the user tries to log in with an account with wrong information, it will notify the user that the login creditions are wrong.
 
-Once the user logs into an account or creates an account, it will take them to the "Hours" tab that informs a user of the dining hours for each dining option as well as an estimate of the wait times of each dining option. If they click on the "Menus" tab, they will be shown a page that displays menu options from Sadler dining hall. For future updates, there will be an option to choose which dining hall menu to look at. The pictures for each menu item will also be updated in a future release. The user can scroll down on this page to see additional menu items that don't show up on the page. Each menu item also has a star if a user wants to leave a review but this part has not been coded yet.
+Once the user logs into an account or creates an account, it will take them to the "Hours" tab that informs a user of the dining hours for each dining option as well as an estimate of the wait times of each dining option. If they click on the "Menus" tab, they will be shown a page that displays menu options from Sadler dining hall or the Commons dining hall. When they click on the dining hall they want to see menu items for, the pictures for each menu item with the name of the food and the station it is served in will appear. The user can scroll down on this page to see additional menu items that don't show up on the page. Each menu item also has a star if a user wants to leave a review. If the user clicks on the heart then it will be added to the favorites tab for their account.
 
-The "Reviews" tab is not currently functional but shows a sample of what should be functional in a later release. It will show a list of reviews that other users have posted so that a user can decide what dining hall to choose based on the reviews. The user will be able to see photos uploaded as well as text and a rating out of 5 stars for a menu item.
+The "Reviews" tab shows a list of reviews that other users have posted so that a user can decide what dining hall to choose based on the reviews. The user will be able to see the reviews and a rating out of 5 stars written next to the item when you click on the review. 
 
-The "Favorites" tab has not been worked on yet because it requires information from previous tabs that have not been finished yet. The "Favorites" page will display a menu of items that the user account has favorited in the "Menus" tab and the user will receive notifications when the menu item comes into the dining option again.
+The "Favorites" page displays a menu of items that the user account has favorited in the "Menus" tab. If a user favorites an item from the menu, it will be added into the favorites page and be stored there when the user logs back into the application. The menu items in the favorites page show the menu items in the same format as in the menus tab. If the user clicks on a star for the rating, it will take them to a page to write a review. This review will be added to the reviews tab for everyone to see.
+
+
+
+ACCEPTANCE TESTS
+
+How you established acceptance tests, how to perform acceptance tests for your stories and clarify for which stories your implementation passes the acceptance tests.
+
+The way that we established acceptance tests is by having a team meeting about what people’s roles were and what we planned to accomplish with each task/story. We performed acceptance tests by determining whether or not our final product succeeded in completing the task that we wanted to go for when discussing and assigning tasks. 
+
+For the favorites milestone, these were the stories that were implemented: 
+Pull data from the database for the favorites page: If the favorites page loaded with the correct menu items from the database then this task was successful. This was a success.
+Add menu information to the database for favorites: If the menu information for each account gets sent into the Google Firestore database then this task was successful. This was a success.
+Implement favorite button functionality: If you are able to click on the button and send information to the database, it is a success. This was a success.
+Change the favorites button after it is clicked. If the favorites button fills in after the user selects the button it is a success. This task was not quite successful because the button does change after being clicked but the heart does not fill in, instead it turns into a red filled in square.
+
+For the login milestone, these were the tasks implemented:
+Allow the user to create a new account and store the information in the database: This task was successful if the authentication stores the user’s data when creating an account. This was a success.
+Allow the user to change their password if they have their old password: This was a success if the user is able to change their password from old to new. This was a success.
+Not allow the user to log in with the wrong credentials: This was successful if the user was notified that their login information was incorrect. This was a success.
+
+For the menu milestone, these were the tasks implemented:
+Take the menu items currently being served from different dining halls and display them on the menu tab: This task was successful if when the user clicks on the menu tab for each dining hall, the current menu list shows up. This was successful for Sadler and Commons dining hall. The other dining halls have not been implemented yet but this task is considered a success.
+
+For the review milestone, these were the tasks implemented:
+When the user selects a star rating on an item in the menus tab, they should be prompted to a review section to write a review: This task was successful if the user is able to write a review with a rating. This was a success.
+When a user submits a review, it shows up in the reviews tab: This is successful if the reviews tab shows reviews that other users have submitted. This was a success.
+
+For the notification milestone, we had to find a way to notify users when their favorite meal was on the menu. Ilhan was tasked with this part of the project, and I added the functionality in the favorites class. I checked if the favorite food was on the menu and it was supposed to check, but it has not been working properly. It did not pass the acceptance test because it sometimes does not work properly to check if a favorite item was on the menu.
+
+For the hours milestone, we had to list the hours for Sadler, Cafe, and Marketplace and also add the estimated wait times. This was done by Ilhan and I asked people who worked at dining halls and popular times on Google to estimate the wait times. This was done properly. The hours were simply implemented by writing it in a text. These acceptance tests were accepted since it has worked properly.  
+
