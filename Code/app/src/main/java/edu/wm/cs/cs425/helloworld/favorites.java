@@ -49,11 +49,13 @@ public class favorites extends Fragment {
                         Log.d("retrieve", "Favorite food: " + favoriteFoods);
                         for (ReviewModel reviewModel : rvList) {
                             Log.d("retrieve", "Review model food: " + reviewModel.getFoodName());
-                            if (reviewModel.getFoodName().equals(favoriteFoods)) {
-                                Log.d("retrieve", "Review model food: " + reviewModel.getFoodName());
-                                isFavoriteFoodOnMenu = true;
-                                Log.d("retrieve", "Match found");
-                                break;
+                            if(reviewModel.getFoodName() != null) {
+                                if (reviewModel.getFoodName().equals(favoriteFoods)) {
+                                    Log.d("retrieve", "Review model food: " + reviewModel.getFoodName());
+                                    isFavoriteFoodOnMenu = true;
+                                    Log.d("retrieve", "Match found");
+                                    break;
+                                }
                             }
                         }
 
