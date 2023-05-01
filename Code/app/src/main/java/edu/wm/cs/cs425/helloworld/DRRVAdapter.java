@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -43,6 +42,7 @@ public class DRRVAdapter extends RecyclerView.Adapter<DRRVAdapter.MyViewHolder> 
         holder.username.setText(reviewDisplayModelArrayList.get(position).getusername());
         Log.d("username", reviewDisplayModelArrayList.get(position).getusername());
         holder.userText.setText(reviewDisplayModelArrayList.get(position).getUserText());
+        holder.avgRating.setText("Rating: " + reviewDisplayModelArrayList.get(position).getUserRating());
 
 
     }
@@ -53,7 +53,7 @@ public class DRRVAdapter extends RecyclerView.Adapter<DRRVAdapter.MyViewHolder> 
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView foodName, locationname, username, userText;
+        TextView foodName, locationname, username, userText, avgRating;
 
         public MyViewHolder(@NonNull View itemView){
             super(itemView);
@@ -61,6 +61,7 @@ public class DRRVAdapter extends RecyclerView.Adapter<DRRVAdapter.MyViewHolder> 
             locationname=itemView.findViewById(R.id.locationname);
             username= itemView.findViewById(R.id.username);
             userText = itemView.findViewById(R.id.reviewtxt);
+            avgRating = itemView.findViewById(R.id.ratingScore);
 
         }
     }

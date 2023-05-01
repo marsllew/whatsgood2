@@ -42,7 +42,7 @@ public class DHRVAdapter extends RecyclerView.Adapter<DHRVAdapter.MyViewHolder> 
                 if ( position == 1){
                     AppCompatActivity activity = (AppCompatActivity)view.getContext();
                     menus menus = new menus();
-                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.DHlayout,menus).addToBackStack("Sad").commit();
+                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.DHlayout,menus).addToBackStack(null).commit();
                 }
                 else{
                     AppCompatActivity activity = (AppCompatActivity)view.getContext();

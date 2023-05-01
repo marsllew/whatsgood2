@@ -1,5 +1,7 @@
 package edu.wm.cs.cs425.helloworld;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -25,8 +27,9 @@ import java.util.List;
 
 public class ReviewViewPage extends AppCompatActivity {
 
-    private TextView foodTitle, locationTitle;
-
+    private TextView foodTitle, locationTitle, avgRating;
+    private Double oldRating;
+    private Double newRating;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,7 @@ public class ReviewViewPage extends AppCompatActivity {
         double rating = (double) extras.getInt("rating");
         foodTitle = findViewById(R.id.Foodname);
         locationTitle = findViewById(R.id.locationname);
+        avgRating = findViewById(R.id.avgRating);
         foodTitle.setText(food);
         locationTitle.setText(location);
 
@@ -59,12 +63,32 @@ public class ReviewViewPage extends AppCompatActivity {
                 String locationName = document.getString("location");
                 String username = document.getString("username");
                 String userText = document.getString("text");
+                double userRating = document.getDouble("rating");
                 Log.d("retrieve", foodName + locationName + username);
-                reviewDisplayModelArrayListList.add(new ReviewDisplayModel(foodName, locationName, username, userText));
+                reviewDisplayModelArrayListList.add(new ReviewDisplayModel(foodName, locationName, username, userText, userRating));
             }
             menuadapt.notifyDataSetChanged();
         });
-
+        DocumentReference rateRef = db.collection("Reviews")
+                .document("Sadler")
+                .collection(location)
+                .document(food);
+        rateRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    Log.d(TAG, "document retrieved");
+                    if (document.exists()) {
+                        if (document.contains("rating")) {
+                            oldRating = (double) document.get("rating");
+                            Log.d(TAG, String.valueOf(oldRating));
+                            avgRating.setText("Rating: " + oldRating);
+                        }
+                    }
+                }
+            }
+        });
 
                 /***.addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override

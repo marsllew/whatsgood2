@@ -6,13 +6,17 @@ public class ReviewDisplayModel {
     String locationname;
 
     String userText;
+    int image;
+
+    double rating;
 
 
-    public ReviewDisplayModel(String foodName, String foodLocation, String username, String userText) {
+    public ReviewDisplayModel(String foodName, String foodLocation, String username, String userText, double rating) {
         this.Foodname = foodName;
         this.locationname = foodLocation;
         this.username =username;
         this.userText = userText;
+        this.rating = rating;
     }
 
     public String getFoodname() {
@@ -30,5 +34,7 @@ public class ReviewDisplayModel {
     public String getUserText(){
         return userText;
     }
+
+    public double getUserRating(){return rating;}
 
 }
