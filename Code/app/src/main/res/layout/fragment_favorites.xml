@@ -12,9 +12,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal|top"
         android:layout_marginTop="10dp"
-        android:textSize="32sp"
-        android:textColor="#000000"
-        android:text="My Favorites" />
+        android:fontFamily="@font/chango"
+        android:text="My Favorites"
+        android:textColor="#7A7676"
+        android:textSize="24sp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/favoritesRecycle"

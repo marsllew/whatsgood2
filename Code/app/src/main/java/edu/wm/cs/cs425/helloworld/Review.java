@@ -6,11 +6,14 @@ public class Review {
     String food;
     String location;
 
-    public Review(double rating, String text, String food, String location) {
+    String calories;
+
+    public Review(double rating, String text, String food, String location, String calories) {
         this.rating = rating;
         this.text = text;
         this.food = food;
         this.location = location;
+        this.calories = calories;
     }
 
     public double getRating() {
@@ -44,4 +47,8 @@ public class Review {
     public void setLocation(String location) {
         this.location = location;
     }
+
+    public String getCalories(){return calories;}
+
+    public void setCalories(String calories){this.calories = calories;}
 }

@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -50,6 +51,16 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.MyViewHolder> {
         holder.foodname.setText(reviewModelArrayList.get(position).getFoodName());
         holder.locationname.setText(reviewModelArrayList.get(position).getFoodLocation());
         holder.calories.setText(reviewModelArrayList.get(position).getCalories());
+        holder.itemView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, ReviewViewPage.class);
+                intent.putExtra("food", holder.foodname.getText());
+                intent.putExtra("location", holder.locationname.getText());
+                intent.putExtra("rating", 1);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -102,6 +113,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.MyViewHolder> {
                    intent.putExtra("location", locationname.getText());
                    intent.putExtra("rating", 1);
                    intent.putExtra("image", R.id.foodpic);
+                   intent.putExtra("calories", calories.getText());
                    view.getContext().startActivity(intent);
                 }
             });
@@ -114,6 +126,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.MyViewHolder> {
                     intent.putExtra("location", locationname.getText());
                     intent.putExtra("rating", 2);
                     intent.putExtra("image", R.id.foodpic);
+                    intent.putExtra("calories", calories.getText());
                     view.getContext().startActivity(intent);
                 }
             });
@@ -126,6 +139,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.MyViewHolder> {
                     intent.putExtra("location", locationname.getText());
                     intent.putExtra("rating", 3);
                     intent.putExtra("image", R.id.foodpic);
+                    intent.putExtra("calories", calories.getText());
                     view.getContext().startActivity(intent);
                 }
             });
@@ -138,6 +152,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.MyViewHolder> {
                     intent.putExtra("location", locationname.getText());
                     intent.putExtra("rating", 4);
                     intent.putExtra("image", R.id.foodpic);
+                    intent.putExtra("calories", calories.getText());
                     view.getContext().startActivity(intent);
                 }
             });
@@ -150,6 +165,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.MyViewHolder> {
                     intent.putExtra("location", locationname.getText());
                     intent.putExtra("rating", 5);
                     intent.putExtra("image", R.id.foodpic);
+                    intent.putExtra("calories", calories.getText());
                     view.getContext().startActivity(intent);
                 }
             });
