@@ -49,6 +49,7 @@ public class Leave_Review extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         String food = extras.getString("food");
         String location = extras.getString("location");
+        String calories = extras.getString("calories");
         double rating = (double) extras.getInt("rating");
         int pic = extras.getInt("image");
         String corlocation = location.replace("/", " or ");
@@ -63,7 +64,7 @@ public class Leave_Review extends AppCompatActivity {
         submit.setOnClickListener(view -> {
             String text = reviewText.getText().toString();
 
-            Review review = new Review(rating, text, food, corlocation);
+            Review review = new Review(rating, text, food, corlocation, calories);
             uploadReview(review);
             //problem
         });
@@ -81,6 +82,7 @@ public class Leave_Review extends AppCompatActivity {
         foodReview.put("username", getName());
         foodReview.put("text", review.getText());
         foodReview.put("rating", review.getRating());
+        foodReview.put("calories",review.getCalories());
 
         db.collection("Reviews")
                 .document("Sadler")
