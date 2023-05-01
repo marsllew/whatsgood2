@@ -51,6 +51,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.MyViewHolder> {
         holder.foodname.setText(reviewModelArrayList.get(position).getFoodName());
         holder.locationname.setText(reviewModelArrayList.get(position).getFoodLocation());
         holder.calories.setText(reviewModelArrayList.get(position).getCalories());
+        holder.imageView.setImageResource(reviewModelArrayList.get(position).getImage());
         holder.itemView.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {

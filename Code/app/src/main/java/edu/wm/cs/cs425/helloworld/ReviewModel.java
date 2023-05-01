@@ -45,7 +45,7 @@ public class ReviewModel {
         image_dict.put("APPETIZER", R.drawable.appetizer);
         this.FoodName = foodName;
         this.FoodLocation = foodLocation;
-        //this.image = image_dict.get(this.FoodLocation);
+        this.image = (image_dict.get(this.FoodLocation) != null) ? image_dict.get(this.FoodLocation) : R.drawable.food;
         this.calories = cal;
     }
 
