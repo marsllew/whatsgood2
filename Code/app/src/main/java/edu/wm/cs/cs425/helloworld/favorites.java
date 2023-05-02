@@ -47,9 +47,10 @@ public class favorites extends Fragment {
                         String foodName = document.getString("foodname");
                         String locationName = document.getString("locationname");
                         String calories = document.getString("calories");
+                        String diningHall = document.getString("diningHall");
                         favoriteFoods.add(foodName);
                         Log.d("retrieve1", foodName + locationName + calories);
-                        rvList.add(new ReviewModel(foodName, locationName, calories));
+                        rvList.add(new ReviewModel(foodName, locationName, calories, diningHall));
                         isFavoriteFoodOnMenu.set(false);
 
                         for (ReviewModel reviewModel : menuSingleton.getInstance().getArrayList()) {

@@ -55,7 +55,7 @@ public class menus extends Fragment {
                     }
                     else { name = item; cals = "0cal"; }
                 }
-                rvList.add(new ReviewModel(name, key, cals));
+                rvList.add(new ReviewModel(name, key, cals, hallSelectionSingleton.getInstance().getDiningHall()));
             }
         }
         menuSingleton.getInstance().setArrayList(rvList);

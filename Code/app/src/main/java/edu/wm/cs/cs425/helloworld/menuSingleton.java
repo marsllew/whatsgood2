@@ -21,7 +21,4 @@ public class menuSingleton {
         return this.grvList;
     }
 
-
-
-
 }

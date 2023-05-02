@@ -56,6 +56,7 @@ public class reviews extends Fragment {
                     String locationName = document.getString("location");
                     String username = document.getString("username");
                     String calories = document.getString("calories");
+                    String diningHall = document.getString("diningHall");
                     reviewedFoods.add(foodName);
                     Log.d("retrieve", foodName + locationName + username);
 
@@ -70,7 +71,7 @@ public class reviews extends Fragment {
                     if(beingServed.contains(foodName)){
                         if(foodName != null) {
                             alreadyAdded.add(foodName);
-                            rvList.add(new ReviewModel(foodName, locationName, calories));
+                            rvList.add(new ReviewModel(foodName, locationName, calories, diningHall ));
                         }
                     }
                 }
@@ -118,6 +119,7 @@ public class reviews extends Fragment {
                     String locationName = document.getString("location");
                     String username = document.getString("username");
                     String calories = document.getString("calories");
+                    String diningHall = document.getString("diningHall");
                     reviewedFoods.add(foodName);
                     Log.d("retrieve", foodName + locationName + username);
 
@@ -131,7 +133,7 @@ public class reviews extends Fragment {
                     }
                     //if(reviewModel.getFoodName() != null) {
                         if (beingServed.contains(foodName) && !alreadyAdded.contains(foodName)) {
-                            rvList.add(new ReviewModel(foodName, locationName, calories));
+                            rvList.add(new ReviewModel(foodName, locationName, calories, diningHall));
                         }
                     //}
                 }

@@ -9,6 +9,8 @@ public class ReviewModel {
     String FoodName;
     String FoodLocation;
 
+    String diningHall;
+
     int image;
 
     String calories;
@@ -17,7 +19,7 @@ public class ReviewModel {
 
 
 
-    public ReviewModel(String foodName, String foodLocation, String cal) {
+    public ReviewModel(String foodName, String foodLocation, String cal, String diningHall) {
         image_dict.put("DELI", R.drawable.turkeysliced);
         image_dict.put("DESSERT", R.drawable.cupcakes);
         image_dict.put("GRILL", R.drawable.cheesburger);
@@ -47,6 +49,7 @@ public class ReviewModel {
         this.FoodLocation = foodLocation;
         this.image = (image_dict.get(this.FoodLocation) != null) ? image_dict.get(this.FoodLocation) : R.drawable.food;
         this.calories = cal;
+        this.diningHall = diningHall;
     }
 
     public String getFoodName() {
@@ -62,4 +65,6 @@ public class ReviewModel {
     }
 
     public String getCalories() { return calories; }
+
+    public String getDiningHall(){return diningHall;}
 }
