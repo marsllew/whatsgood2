@@ -68,7 +68,7 @@ public class ReviewViewPage extends AppCompatActivity {
                 double userRating = document.getDouble("rating");
                 reviewedFoods.add(foodName);
                 Log.d("retrieve", foodName + locationName + username);
-
+                reviewDisplayModelArrayListList.add(new ReviewDisplayModel(foodName, locationName, username, userText, userRating));
                 //start of new code
                 for (ReviewModel reviewModel : menuSingleton.getInstance().getArrayList()) {
                     Log.d("retrieve3", "Review model food: " + reviewModel.getFoodName());

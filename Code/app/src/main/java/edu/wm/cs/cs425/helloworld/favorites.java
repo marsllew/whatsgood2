@@ -38,6 +38,7 @@ public class favorites extends Fragment {
         recyclerView.setLayoutManager(llmMenu);
         recyclerView.setAdapter(menuadapt);
         List<String> favoriteFoods = new ArrayList<>();
+        AtomicBoolean isFavoriteFoodOnMenu = new AtomicBoolean(false);
         CollectionReference favoritesRef = db.collection("users").document(getUserID()).collection("favorites");
         favoritesRef.get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
@@ -49,7 +50,7 @@ public class favorites extends Fragment {
                         favoriteFoods.add(foodName);
                         Log.d("retrieve1", foodName + locationName + calories);
                         rvList.add(new ReviewModel(foodName, locationName, calories));
-                        AtomicBoolean isFavoriteFoodOnMenu = new AtomicBoolean(false);
+                        isFavoriteFoodOnMenu.set(false);
 
                         for (ReviewModel reviewModel : menuSingleton.getInstance().getArrayList()) {
                             Log.d("retrieve3", "Review model food: " + reviewModel.getFoodName());
@@ -64,52 +65,11 @@ public class favorites extends Fragment {
                                 }
                             }
                         }
-                        if (isFavoriteFoodOnMenu.get()) {
-                            Toast.makeText(getContext(), "One or more of your favorite foods are on the menu!", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(getContext(), "None of your favorite foods are on the menu.", Toast.LENGTH_SHORT).show();
-                        }
-                        //FirebaseFirestore db = FirebaseFirestore.getInstance();
-                        /***
-                        CollectionReference favorRef = db.collection("users").document(getUserID()).collection("favorites");
-                        favoritesRef.get()
-                                .addOnSuccessListener(queryDocumentSnapshots1 -> {
-                                    Log.w("Testin1", "could not retrieve data from database");
-                                    List<DocumentSnapshot> documents1 = queryDocumentSnapshots1.getDocuments();
-                                    for (DocumentSnapshot document1 : documents1) {
-                                        String foodName1 = document1.getString("foodname");
-                                        favoriteFoods.add(foodName1);
-                                    }
-                                    Log.d("Testin2", "Favorite food: " + favoriteFoods);
-                                    Log.d("retrieve2", "Favorite food: " + favoriteFoods);
-                                    for (ReviewModel reviewModel : rvList) {
-                                        Log.d("retrieve3", "Review model food: " + reviewModel.getFoodName());
-                                        if(reviewModel.getFoodName() != null) {
-                                            for(String foodItem: favoriteFoods) {
-                                                if (reviewModel.getFoodName().equals(foodItem)) {
-                                                    Log.d("retrieve4", "Review model food: " + reviewModel.getFoodName());
-                                                    isFavoriteFoodOnMenu.set(true);
-                                                    Log.d("retrieve5", "Match found");
-                                                    break;
-                                                }
-                                            }
-                                        }
-                                    }
-                                    if (isFavoriteFoodOnMenu.get()) {
-                                        Toast.makeText(getContext(), "One or more of your favorite foods are on the menu!", Toast.LENGTH_SHORT).show();
-                                    } else {
-                                        Toast.makeText(getContext(), "None of your favorite foods are on the menu.", Toast.LENGTH_SHORT).show();
-                                    }
-                                })
-                                .addOnFailureListener(e -> {
-                                    Log.w("Firestore", "could not retrieve data from database");
-                                });
-                        ***/
-
-
-
-
-
+                    }
+                    if (isFavoriteFoodOnMenu.get()) {
+                        Toast.makeText(getContext(), "One or more of your favorite foods are on the menu!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getContext(), "None of your favorite foods are on the menu.", Toast.LENGTH_SHORT).show();
                     }
                     menuadapt.notifyDataSetChanged();
 
