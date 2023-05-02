@@ -23,11 +23,13 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class favorites extends Fragment {
 
+    private ArrayList<ReviewModel> onMenuList;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_favorites, container, false);
 
+        onMenuList = menuSingleton.getInstance().getArrayList();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         ArrayList<ReviewModel> rvList = new ArrayList<>();
         RecyclerView recyclerView = view.findViewById(R.id.favoritesRecycle);
@@ -35,6 +37,7 @@ public class favorites extends Fragment {
         LinearLayoutManager llmMenu = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(llmMenu);
         recyclerView.setAdapter(menuadapt);
+        List<String> favoriteFoods = new ArrayList<>();
         CollectionReference favoritesRef = db.collection("users").document(getUserID()).collection("favorites");
         favoritesRef.get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
@@ -43,11 +46,31 @@ public class favorites extends Fragment {
                         String foodName = document.getString("foodname");
                         String locationName = document.getString("locationname");
                         String calories = document.getString("calories");
+                        favoriteFoods.add(foodName);
                         Log.d("retrieve1", foodName + locationName + calories);
                         rvList.add(new ReviewModel(foodName, locationName, calories));
                         AtomicBoolean isFavoriteFoodOnMenu = new AtomicBoolean(false);
-                        List<String> favoriteFoods = new ArrayList<>();
+
+                        for (ReviewModel reviewModel : menuSingleton.getInstance().getArrayList()) {
+                            Log.d("retrieve3", "Review model food: " + reviewModel.getFoodName());
+                            if(reviewModel.getFoodName() != null) {
+                                for(String foodItem: favoriteFoods) {
+                                    if (reviewModel.getFoodName().equals(foodItem)) {
+                                        Log.d("retrieve4", "Review model food: " + reviewModel.getFoodName());
+                                        isFavoriteFoodOnMenu.set(true);
+                                        Log.d("retrieve5", "Match found");
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        if (isFavoriteFoodOnMenu.get()) {
+                            Toast.makeText(getContext(), "One or more of your favorite foods are on the menu!", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getContext(), "None of your favorite foods are on the menu.", Toast.LENGTH_SHORT).show();
+                        }
                         //FirebaseFirestore db = FirebaseFirestore.getInstance();
+                        /***
                         CollectionReference favorRef = db.collection("users").document(getUserID()).collection("favorites");
                         favoritesRef.get()
                                 .addOnSuccessListener(queryDocumentSnapshots1 -> {
@@ -81,6 +104,7 @@ public class favorites extends Fragment {
                                 .addOnFailureListener(e -> {
                                     Log.w("Firestore", "could not retrieve data from database");
                                 });
+                        ***/
 
 
 

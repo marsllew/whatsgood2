@@ -55,6 +55,8 @@ public class ReviewViewPage extends AppCompatActivity {
         LinearLayoutManager llmMenu = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(llmMenu);
         recyclerView.setAdapter(menuadapt);
+        List<String> reviewedFoods = new ArrayList<>();
+
         CollectionReference reviewsRef = db.collection("Reviews").document("Sadler").collection(location).document(food).collection("reviews");
         reviewsRef.get().addOnSuccessListener(queryDocumentSnapshots -> {
             List<DocumentSnapshot> documents = queryDocumentSnapshots.getDocuments();
@@ -64,8 +66,25 @@ public class ReviewViewPage extends AppCompatActivity {
                 String username = document.getString("username");
                 String userText = document.getString("text");
                 double userRating = document.getDouble("rating");
+                reviewedFoods.add(foodName);
                 Log.d("retrieve", foodName + locationName + username);
-                reviewDisplayModelArrayListList.add(new ReviewDisplayModel(foodName, locationName, username, userText, userRating));
+
+                //start of new code
+                for (ReviewModel reviewModel : menuSingleton.getInstance().getArrayList()) {
+                    Log.d("retrieve3", "Review model food: " + reviewModel.getFoodName());
+                    if(reviewModel.getFoodName() != null) {
+                        for(String foodItem: reviewedFoods) {
+                            if (reviewModel.getFoodName().equals(foodItem)) {
+                                Log.d("retrieve4", "Review model food: " + reviewModel.getFoodName());
+                                reviewDisplayModelArrayListList.add(new ReviewDisplayModel(foodName, locationName, username, userText, userRating));
+                                Log.d("retrieve5", "Match found");
+
+                            }
+                        }
+                    }
+                }
+
+                //reviewDisplayModelArrayListList.add(new ReviewDisplayModel(foodName, locationName, username, userText, userRating));
             }
             menuadapt.notifyDataSetChanged();
         });
