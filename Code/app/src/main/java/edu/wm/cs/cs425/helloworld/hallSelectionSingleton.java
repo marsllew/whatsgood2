@@ -17,7 +17,7 @@ public class hallSelectionSingleton {
     }
     public void setDiningHall(String location){
         this.diningHall = location;
-        this.diningHall = "Sadler";
+        //this.diningHall = "Sadler";
     }
     public String getDiningHall(){
         return this.diningHall;
