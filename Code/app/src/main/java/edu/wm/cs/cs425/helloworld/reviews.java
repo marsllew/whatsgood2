@@ -24,21 +24,29 @@ import java.util.List;
 
 public class reviews extends Fragment {
 
+    private FirebaseFirestore db;
+    ArrayList<ReviewModel> rvList;
+    RecyclerView recyclerView;
+    RVAdapter menuadapt;
+    LinearLayoutManager llmMenu;
+
+    ArrayList<String> alreadyAdded;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_reviews, container, false);
         // Inflate the layout for this fragment
 
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        //ReviewModel rvMenu = new ReviewModel("Salad", "Sadler", "0 Cals");
-        ArrayList<ReviewModel> rvList = new ArrayList<>();
-        //rvList.add(rvMenu);
-        RecyclerView recyclerView = view.findViewById(R.id.reviewRecycle);
-        RVAdapter menuadapt = new RVAdapter(getContext(), rvList);
-        LinearLayoutManager llmMenu = new LinearLayoutManager(getContext());
+        db = FirebaseFirestore.getInstance();
+        rvList = new ArrayList<>();
+        alreadyAdded = new ArrayList<>();
+        recyclerView = view.findViewById(R.id.reviewRecycle);
+        menuadapt = new RVAdapter(getContext(), rvList);
+        llmMenu = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(llmMenu);
         recyclerView.setAdapter(menuadapt);
+        List<String> reviewedFoods = new ArrayList<>();
         db.collectionGroup("reviews").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -48,8 +56,25 @@ public class reviews extends Fragment {
                     String locationName = document.getString("location");
                     String username = document.getString("username");
                     String calories = document.getString("calories");
-                    Log.d("retrieve", foodName + locationName + username);
-                    rvList.add(new ReviewModel(foodName, locationName, calories));
+                    String diningHall = document.getString("diningHall");
+                    reviewedFoods.add(foodName);
+                    //Log.d("retrieve", foodName + locationName + username);
+
+                    //new code
+                    ArrayList<String> beingServed = new ArrayList();
+                    for (ReviewModel reviewModel : menuSingleton.getInstance().getArrayList()) {
+                        //Log.d("retrieve3", "Review model food: " + reviewModel.getFoodName());
+                        if(reviewModel.getFoodName() != null) {
+                            beingServed.add(reviewModel.getFoodName());
+                            //Log.d("beingServedList", reviewModel.getFoodName());
+                        }
+                    }
+                    if(beingServed.contains(foodName)){
+                        if(foodName != null) {
+                            alreadyAdded.add(foodName);
+                            rvList.add(new ReviewModel(foodName, locationName, calories, diningHall ));
+                        }
+                    }
                 }
                 menuadapt.notifyDataSetChanged();
             }
@@ -81,5 +106,42 @@ public class reviews extends Fragment {
         ***/
 
         return view;
+    }
+
+    @Override
+    public void onResume(){
+        List<String> reviewedFoods = new ArrayList<>();
+        db.collectionGroup("reviews").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                List<DocumentSnapshot> documents = queryDocumentSnapshots.getDocuments();
+                for (DocumentSnapshot document : documents) {
+                    String foodName = document.getString("food");
+                    String locationName = document.getString("location");
+                    String username = document.getString("username");
+                    String calories = document.getString("calories");
+                    String diningHall = document.getString("diningHall");
+                    reviewedFoods.add(foodName);
+                    //Log.d("retrieve", foodName + locationName + username);
+
+                    //new code
+                    ArrayList<String> beingServed = new ArrayList();
+                    for (ReviewModel reviewModel : menuSingleton.getInstance().getArrayList()) {
+                        //Log.d("retrieve3", "Review model food: " + reviewModel.getFoodName());
+                        if(reviewModel.getFoodName() != null) {
+                            beingServed.add(reviewModel.getFoodName());
+                        }
+                    }
+                    //if(reviewModel.getFoodName() != null) {
+                        if (beingServed.contains(foodName) && !alreadyAdded.contains(foodName)) {
+                            alreadyAdded.add(foodName);
+                            rvList.add(new ReviewModel(foodName, locationName, calories, diningHall));
+                        }
+                    //}
+                }
+                menuadapt.notifyDataSetChanged();
+            }
+        });
+        super.onResume();
     }
 }

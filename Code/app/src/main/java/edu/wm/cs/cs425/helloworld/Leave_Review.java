@@ -5,6 +5,7 @@ import static android.content.ContentValues.TAG;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -51,6 +52,7 @@ public class Leave_Review extends AppCompatActivity {
         String location = extras.getString("location");
         String calories = extras.getString("calories");
         double rating = (double) extras.getInt("rating");
+        String diningHall = extras.getString("diningHall");
         int pic = extras.getInt("image");
         String corlocation = location.replace("/", " or ");
         Log.d(TAG, corlocation);
@@ -64,9 +66,9 @@ public class Leave_Review extends AppCompatActivity {
         submit.setOnClickListener(view -> {
             String text = reviewText.getText().toString();
 
-            Review review = new Review(rating, text, food, corlocation, calories);
+            Review review = new Review(rating, text, food, corlocation, calories, diningHall);
             uploadReview(review);
-            //problem
+            finish();
         });
     }
 
@@ -78,14 +80,16 @@ public class Leave_Review extends AppCompatActivity {
     public void uploadReview(Review review) {
         Map<String, Object> foodReview = new HashMap<>();
         foodReview.put("location", review.getLocation());
+        Log.d("banana1", review.getDiningLocation());
         foodReview.put("food", review.getFood());
         foodReview.put("username", getName());
         foodReview.put("text", review.getText());
         foodReview.put("rating", review.getRating());
         foodReview.put("calories",review.getCalories());
+        foodReview.put("diningHall" ,review.getDiningLocation());
 
         db.collection("Reviews")
-                .document("Sadler")
+                .document(review.getDiningLocation())
                 .collection(review.getLocation())
                 .document(review.getFood())
                 .collection("reviews")
@@ -99,7 +103,7 @@ public class Leave_Review extends AppCompatActivity {
                 });
 
         DocumentReference rateRef = db.collection("Reviews")
-                .document("Sadler")
+                .document(review.getDiningLocation())
                 .collection(review.getLocation())
                 .document(review.getFood());
         rateRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -131,7 +135,7 @@ public class Leave_Review extends AppCompatActivity {
                 ratingStore.put("rating", avgRating);
                 ratingStore.put("revCount", reviewCount+1);
                 db.collection("Reviews")
-                        .document("Sadler")
+                        .document(review.getDiningLocation())
                         .collection(review.getLocation())
                         .document(review.getFood())
                         .set(ratingStore)
@@ -169,7 +173,6 @@ public class Leave_Review extends AppCompatActivity {
 
     private String getName(){
         user = FirebaseAuth.getInstance().getCurrentUser();
-        Toast.makeText(getApplicationContext(),user.getDisplayName(), Toast.LENGTH_LONG).show();
         return user.getDisplayName();
     }
 

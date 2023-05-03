@@ -38,13 +38,16 @@ public class ReviewViewPage extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         String food = extras.getString("food");
+        Log.d("Tricky1", food);
         String location = extras.getString("location");
+        String diningHall = extras.getString("diningHall");
         double rating = (double) extras.getInt("rating");
         foodTitle = findViewById(R.id.Foodname);
         locationTitle = findViewById(R.id.locationname);
         avgRating = findViewById(R.id.avgRating);
         foodTitle.setText(food);
         locationTitle.setText(location);
+        location = location.replace("/", " or ");
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         //ReviewDisplayModel reviewDisplayModel = new ReviewDisplayModel(food, location, getUserID());
@@ -55,7 +58,14 @@ public class ReviewViewPage extends AppCompatActivity {
         LinearLayoutManager llmMenu = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(llmMenu);
         recyclerView.setAdapter(menuadapt);
-        CollectionReference reviewsRef = db.collection("Reviews").document("Sadler").collection(location).document(food).collection("reviews");
+        List<String> reviewedFoods = new ArrayList<>();
+        Log.d("tricky2", hallSelectionSingleton.getInstance().getDiningHall());
+        Log.d("tricky3", location);
+        Log.d("helloThere", diningHall);
+        Log.d("tricky4", "I am confusion");
+
+
+        CollectionReference reviewsRef = db.collection("Reviews").document(diningHall).collection(location).document(food).collection("reviews");
         reviewsRef.get().addOnSuccessListener(queryDocumentSnapshots -> {
             List<DocumentSnapshot> documents = queryDocumentSnapshots.getDocuments();
             for (DocumentSnapshot document : documents) {
@@ -64,13 +74,17 @@ public class ReviewViewPage extends AppCompatActivity {
                 String username = document.getString("username");
                 String userText = document.getString("text");
                 double userRating = document.getDouble("rating");
-                Log.d("retrieve", foodName + locationName + username);
+                reviewedFoods.add(foodName);
+                Log.d("testing1", foodName + locationName + username);
                 reviewDisplayModelArrayListList.add(new ReviewDisplayModel(foodName, locationName, username, userText, userRating));
+
+
+                //reviewDisplayModelArrayListList.add(new ReviewDisplayModel(foodName, locationName, username, userText, userRating));
             }
             menuadapt.notifyDataSetChanged();
         });
         DocumentReference rateRef = db.collection("Reviews")
-                .document("Sadler")
+                .document(diningHall)
                 .collection(location)
                 .document(food);
         rateRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -78,11 +92,12 @@ public class ReviewViewPage extends AppCompatActivity {
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
-                    Log.d(TAG, "document retrieved");
+                    Log.d("Tricky6", "document retrieved oh boy");
                     if (document.exists()) {
+                        Log.d("Tricky8", "document exists oh boy");
                         if (document.contains("rating")) {
                             oldRating = (double) document.get("rating");
-                            Log.d(TAG, String.valueOf(oldRating));
+                            Log.d("Tricky7", String.valueOf(oldRating));
                             avgRating.setText("Rating: " + oldRating);
                         }
                     }

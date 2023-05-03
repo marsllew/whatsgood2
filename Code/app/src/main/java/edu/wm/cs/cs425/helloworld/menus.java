@@ -72,10 +72,10 @@ public class menus extends Fragment {
                     }
                     else { name = item; cals = "0cal"; }
                 }
-                rvList.add(new ReviewModel(name, key, cals));
+                rvList.add(new ReviewModel(name, key, cals, hallSelectionSingleton.getInstance().getDiningHall()));
             }
         }
-
+        menuSingleton.getInstance().setArrayList(rvList);
         RecyclerView recyclerView = view.findViewById(R.id.menuRecycle);
         RVAdapter menuadapt = new RVAdapter(getContext(), rvList);
         LinearLayoutManager llmMenu = new LinearLayoutManager(getContext());
