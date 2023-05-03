@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,10 +22,20 @@ public class cafmenu extends Fragment {
 
     Dictionary<String, List<String>> final_dict = new Hashtable<>();
     ArrayList<ReviewModel> rvList = new ArrayList<>();
+    ImageButton dhback;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_menus, container, false);
+
+        dhback=view.findViewById(R.id.dhback);
+        dhback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dhmenu dhmenu = new dhmenu();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.menulayout, dhmenu).addToBackStack(null).commit();
+            }
+        });
 
         Webscraper2 menu_retriever = new Webscraper2();
         try {
