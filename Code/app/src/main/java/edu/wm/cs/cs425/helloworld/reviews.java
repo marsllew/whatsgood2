@@ -58,14 +58,15 @@ public class reviews extends Fragment {
                     String calories = document.getString("calories");
                     String diningHall = document.getString("diningHall");
                     reviewedFoods.add(foodName);
-                    Log.d("retrieve", foodName + locationName + username);
+                    //Log.d("retrieve", foodName + locationName + username);
 
                     //new code
                     ArrayList<String> beingServed = new ArrayList();
                     for (ReviewModel reviewModel : menuSingleton.getInstance().getArrayList()) {
-                        Log.d("retrieve3", "Review model food: " + reviewModel.getFoodName());
+                        //Log.d("retrieve3", "Review model food: " + reviewModel.getFoodName());
                         if(reviewModel.getFoodName() != null) {
                             beingServed.add(reviewModel.getFoodName());
+                            //Log.d("beingServedList", reviewModel.getFoodName());
                         }
                     }
                     if(beingServed.contains(foodName)){
@@ -121,18 +122,19 @@ public class reviews extends Fragment {
                     String calories = document.getString("calories");
                     String diningHall = document.getString("diningHall");
                     reviewedFoods.add(foodName);
-                    Log.d("retrieve", foodName + locationName + username);
+                    //Log.d("retrieve", foodName + locationName + username);
 
                     //new code
                     ArrayList<String> beingServed = new ArrayList();
                     for (ReviewModel reviewModel : menuSingleton.getInstance().getArrayList()) {
-                        Log.d("retrieve3", "Review model food: " + reviewModel.getFoodName());
+                        //Log.d("retrieve3", "Review model food: " + reviewModel.getFoodName());
                         if(reviewModel.getFoodName() != null) {
                             beingServed.add(reviewModel.getFoodName());
                         }
                     }
                     //if(reviewModel.getFoodName() != null) {
                         if (beingServed.contains(foodName) && !alreadyAdded.contains(foodName)) {
+                            alreadyAdded.add(foodName);
                             rvList.add(new ReviewModel(foodName, locationName, calories, diningHall));
                         }
                     //}

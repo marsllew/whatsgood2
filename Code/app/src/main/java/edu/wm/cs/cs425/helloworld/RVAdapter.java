@@ -61,7 +61,8 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.MyViewHolder> {
                 intent.putExtra("food", holder.foodname.getText());
                 intent.putExtra("location", holder.locationname.getText());
                 intent.putExtra("rating", 1);
-                intent.putExtra("location", holder.hiddenDining.getText());
+                Log.d("Error", (String) holder.hiddenDining.getText());
+                intent.putExtra("diningHall", holder.hiddenDining.getText());
                 context.startActivity(intent);
             }
         });

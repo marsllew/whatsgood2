@@ -5,6 +5,7 @@ import static android.content.ContentValues.TAG;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -67,7 +68,7 @@ public class Leave_Review extends AppCompatActivity {
 
             Review review = new Review(rating, text, food, corlocation, calories, diningHall);
             uploadReview(review);
-            //problem
+            finish();
         });
     }
 
@@ -79,6 +80,7 @@ public class Leave_Review extends AppCompatActivity {
     public void uploadReview(Review review) {
         Map<String, Object> foodReview = new HashMap<>();
         foodReview.put("location", review.getLocation());
+        Log.d("banana1", review.getDiningLocation());
         foodReview.put("food", review.getFood());
         foodReview.put("username", getName());
         foodReview.put("text", review.getText());

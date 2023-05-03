@@ -42,14 +42,14 @@ public class DHRVAdapter extends RecyclerView.Adapter<DHRVAdapter.MyViewHolder> 
                 if ( position == 1){
                     AppCompatActivity activity = (AppCompatActivity)view.getContext();
                     cafmenu cafmenu = new cafmenu();
-                    hallSelectionSingleton.getInstance().setDiningHall("Sadler");
+                    hallSelectionSingleton.getInstance().setDiningHall("Commons");
                     activity.getSupportFragmentManager().beginTransaction().replace(R.id.DHlayout,cafmenu).addToBackStack(null).commit();
                 }
                 else{
                     AppCompatActivity activity = (AppCompatActivity)view.getContext();
 
                     menus menus = new menus();
-                    hallSelectionSingleton.getInstance().setDiningHall("Commons");
+                    hallSelectionSingleton.getInstance().setDiningHall("Sadler");
                     activity.getSupportFragmentManager().beginTransaction().replace(R.id.DHlayout,menus).addToBackStack(null).commit();
                 }
             }
