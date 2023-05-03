@@ -17,6 +17,7 @@
         android:layout_marginTop="72dp"
         android:layout_marginEnd="-4dp"
         android:layout_marginBottom="-24dp"
+        android:translationY="40dp"
         tools:listitem="@layout/dininghall_rv_row" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,17 +26,20 @@
 
         <TextView
             android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="352dp"
+            android:layout_height="39dp"
+            android:background="@color/purple_500"
             android:fontFamily="@font/chango"
-            android:text="Dining Halls:"
-            android:textSize="16sp"
+            android:text="  Dining Halls  "
+            android:textAlignment="center"
+            android:textColor="#423636"
+            android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.058"
+            app:layout_constraintHorizontal_bias="0.491"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.064" />
+            app:layout_constraintVertical_bias="0.076" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

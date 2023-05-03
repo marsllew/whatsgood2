@@ -171,12 +171,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.MyViewHolder> {
                 }
             });
 
-            itemView.findViewById(R.id.info).setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View view) {
-                    Log.d("demo", "clickly");
-                }
-            });
+
 
         }
     }

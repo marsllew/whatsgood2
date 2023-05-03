@@ -23,7 +23,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="363dp"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="#99D1AF24">
 
             <TextView
                 android:id="@+id/DHname"
@@ -31,8 +32,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/chango"
                 android:text="Dining Hall"
-                android:textColor="@color/purple_200"
-                android:textSize="24sp"
+                android:textColor="#5A473D"
+                android:textSize="30sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

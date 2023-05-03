@@ -10,69 +10,97 @@
 
     <EditText
         android:id="@+id/editTextTextPersonName"
-        android:layout_width="350dp"
-        android:layout_height="57dp"
+        android:layout_width="419dp"
+        android:layout_height="37dp"
         android:layout_marginBottom="64dp"
+        android:background="@color/purple_500"
+        android:backgroundTint="@color/purple_200"
         android:ems="10"
         android:fontFamily="@font/chango"
         android:inputType="textPersonName"
-        android:text="Dining Hall Hours and Wait Times"
-        android:textColor="#6A6969"
-        android:textSize="14sp"
+        android:text="Wait Times"
+        android:textAlignment="center"
+        android:textColor="#423636"
+        android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintHorizontal_bias="0.125"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.38" />
+        app:layout_constraintVertical_bias="0.55" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName2"
+        android:layout_width="418dp"
+        android:layout_height="36dp"
+        android:layout_marginBottom="64dp"
+        android:background="@color/purple_500"
+        android:backgroundTint="@color/purple_200"
+        android:ems="10"
+        android:fontFamily="@font/chango"
+        android:inputType="textPersonName"
+        android:text="      Dining Hall Hours      "
+        android:textAlignment="center"
+        android:textColor="#423636"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="169dp"
-        android:layout_height="65dp"
+        android:layout_width="235dp"
+        android:layout_height="57dp"
         android:layout_marginTop="36dp"
         android:fontFamily="sans-serif-condensed-medium"
         android:text="Commons Dining Hall: Monday-Friday: 7:00AM-10:00PM"
+        android:textColor="#423636"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.123"
+        app:layout_constraintHorizontal_bias="0.09"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
-        app:layout_constraintVertical_bias="0.001" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.057" />
 
     <TextView
         android:id="@+id/textView1"
-        android:layout_width="147dp"
-        android:layout_height="67dp"
+        android:layout_width="246dp"
+        android:layout_height="54dp"
         android:layout_marginTop="32dp"
         android:fontFamily="sans-serif-condensed-medium"
-        android:text="Sadler Dining Hall: Monday-Sunday: 7:00AM-12:00AM"
+        android:text="Sadler Dining Hall:     Monday-Sunday: 7:00AM-12:00AM"
+        android:textColor="#423636"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.113"
+        app:layout_constraintHorizontal_bias="0.096"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.292" />
+        app:layout_constraintVertical_bias="0.198" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="140dp"
-        android:layout_height="59dp"
+        android:layout_width="228dp"
+        android:layout_height="63dp"
         android:fontFamily="sans-serif-condensed-medium"
         android:text="Marketplace Dining Hall: Monday-Friday: 9:00AM-3:00PM"
+        android:textColor="#423636"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.885"
+        app:layout_constraintHorizontal_bias="0.087"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.251" />
+        app:layout_constraintVertical_bias="0.356" />
 
     <TextView
         android:id="@+id/Sadlertv"
@@ -85,10 +113,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.155"
+        app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView1"
-        app:layout_constraintVertical_bias="0.167" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.619" />
 
     <TextView
         android:id="@+id/Commonstv"
@@ -101,10 +129,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.16"
+        app:layout_constraintHorizontal_bias="0.529"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Sadlertv"
-        app:layout_constraintVertical_bias="0.055" />
+        app:layout_constraintVertical_bias="0.013" />
 
     <TextView
         android:id="@+id/Marketplacetv"
@@ -117,10 +145,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.162"
+        app:layout_constraintHorizontal_bias="0.535"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Commonstv"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.017" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
