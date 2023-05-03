@@ -27,6 +27,7 @@ public class favorites extends Fragment {
     private ArrayList<ReviewModel> rvList;
     private RecyclerView recyclerView;
     private RVAdapter menuadapt;
+    private ArrayList<String> favoriteFoods;
 
 
     @Override
@@ -41,7 +42,7 @@ public class favorites extends Fragment {
         LinearLayoutManager llmMenu = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(llmMenu);
         recyclerView.setAdapter(menuadapt);
-        List<String> favoriteFoods = new ArrayList<>();
+        favoriteFoods = new ArrayList<>();
         AtomicBoolean isFavoriteFoodOnMenu = new AtomicBoolean(false);
         CollectionReference favoritesRef = db.collection("users").document(getUserID()).collection("favorites");
         favoritesRef.get()
@@ -97,7 +98,6 @@ public class favorites extends Fragment {
     }
     @Override
     public void onResume() {
-        List<String> favoriteFoods = new ArrayList<>();
         AtomicBoolean isFavoriteFoodOnMenu = new AtomicBoolean(false);
         CollectionReference favoritesRef = db.collection("users").document(getUserID()).collection("favorites");
         favoritesRef.get()
@@ -108,9 +108,12 @@ public class favorites extends Fragment {
                         String locationName = document.getString("locationname");
                         String calories = document.getString("calories");
                         String diningHall = document.getString("diningHall");
-                        favoriteFoods.add(foodName);
-                        //Log.d("retrieve1", foodName + locationName + calories);
-                        rvList.add(new ReviewModel(foodName, locationName, calories, diningHall));
+                        if(!favoriteFoods.contains(foodName)){
+                            favoriteFoods.add(foodName);
+                            //Log.d("retrieve1", foodName + locationName + calories);
+                            rvList.add(new ReviewModel(foodName, locationName, calories, diningHall));
+                        }
+
                     }
                     menuadapt.notifyDataSetChanged();
 
