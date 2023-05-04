@@ -71,6 +71,19 @@ public class favorites extends Fragment {
                                 }
                             }
                         }
+                        for (ReviewModel reviewModel : cafMenuSingleton.getInstance().getArrayList()) {
+                            //Log.d("retrieve3", "Review model food: " + reviewModel.getFoodName());
+                            if(reviewModel.getFoodName() != null) {
+                                for(String foodItem: favoriteFoods) {
+                                    if (reviewModel.getFoodName().equals(foodItem)) {
+                                        //Log.d("retrieve4", "Review model food: " + reviewModel.getFoodName());
+                                        isFavoriteFoodOnMenu.set(true);
+                                        //Log.d("retrieve5", "Match found");
+                                        break;
+                                    }
+                                }
+                            }
+                        }
                     }
                     if (isFavoriteFoodOnMenu.get()) {
                         Toast.makeText(getContext(), "One or more of your favorite foods are on the menu!", Toast.LENGTH_SHORT).show();

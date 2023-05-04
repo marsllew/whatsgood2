@@ -48,7 +48,7 @@ public class menus extends Fragment {
             }
         });
 
-
+        /***
         Webscraper menu_retriever = new Webscraper();
         try {
            final_dict = menu_retriever.webscrape();
@@ -76,8 +76,9 @@ public class menus extends Fragment {
             }
         }
         menuSingleton.getInstance().setArrayList(rvList);
+         ***/
         RecyclerView recyclerView = view.findViewById(R.id.menuRecycle);
-        RVAdapter menuadapt = new RVAdapter(getContext(), rvList);
+        RVAdapter menuadapt = new RVAdapter(getContext(), menuSingleton.getInstance().getArrayList());
         LinearLayoutManager llmMenu = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(llmMenu);
         recyclerView.setAdapter(menuadapt);

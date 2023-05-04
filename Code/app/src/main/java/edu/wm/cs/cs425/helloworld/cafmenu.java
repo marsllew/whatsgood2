@@ -36,7 +36,7 @@ public class cafmenu extends Fragment {
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.menulayout, dhmenu).addToBackStack(null).commit();
             }
         });
-
+        /***
         Webscraper2 menu_retriever = new Webscraper2();
         try {
             final_dict = menu_retriever.webscrape();
@@ -63,9 +63,9 @@ public class cafmenu extends Fragment {
                 rvList.add(new ReviewModel(name, key, cals, hallSelectionSingleton.getInstance().getDiningHall()));
             }
         }
-
+        ***/
         RecyclerView recyclerView = view.findViewById(R.id.menuRecycle);
-        RVAdapter menuadapt = new RVAdapter(getContext(), rvList);
+        RVAdapter menuadapt = new RVAdapter(getContext(), cafMenuSingleton.getInstance().getArrayList());
         LinearLayoutManager llmMenu = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(llmMenu);
         recyclerView.setAdapter(menuadapt);
