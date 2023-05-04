@@ -57,7 +57,6 @@ public class reviews extends Fragment {
                     String username = document.getString("username");
                     String calories = document.getString("calories");
                     String diningHall = document.getString("diningHall");
-                    reviewedFoods.add(foodName);
                     //Log.d("retrieve", foodName + locationName + username);
 
                     //new code
@@ -69,8 +68,16 @@ public class reviews extends Fragment {
                             //Log.d("beingServedList", reviewModel.getFoodName());
                         }
                     }
-                    if(beingServed.contains(foodName)){
+                    for (ReviewModel reviewModel : cafMenuSingleton.getInstance().getArrayList()) {
+                        //Log.d("retrieve3", "Review model food: " + reviewModel.getFoodName());
+                        if(reviewModel.getFoodName() != null) {
+                            beingServed.add(reviewModel.getFoodName());
+                            //Log.d("beingServedList", reviewModel.getFoodName());
+                        }
+                    }
+                    if(beingServed.contains(foodName) && !reviewedFoods.contains(foodName)){
                         if(foodName != null) {
+                            reviewedFoods.add(foodName);
                             alreadyAdded.add(foodName);
                             rvList.add(new ReviewModel(foodName, locationName, calories, diningHall ));
                         }
