@@ -100,6 +100,10 @@ public class LoginPage extends AppCompatActivity {
     }
 
     private void script1Code(){
+
+        rvList.add(new ReviewModel("Cheeseburger", "The Grill", "200", "Sadler"));
+        menuSingleton.getInstance().setArrayList(rvList);
+        /***
         Webscraper menu_retriever = new Webscraper();
         try {
             final_dict = menu_retriever.webscrape();
@@ -127,9 +131,15 @@ public class LoginPage extends AppCompatActivity {
             }
         }
         menuSingleton.getInstance().setArrayList(rvList);
+         ***/
     }
 
     private void script2Code(){
+
+        rvList2.add(new ReviewModel("Cheeseburger", "The Grill", "200", "Sadler"));
+        cafMenuSingleton.getInstance().setArrayList(rvList2);
+
+        /***
         Webscraper2 menu_retriever = new Webscraper2();
         try {
             final_dict2 = menu_retriever.webscrape();
@@ -156,6 +166,7 @@ public class LoginPage extends AppCompatActivity {
                 rvList2.add(new ReviewModel(name, key, cals, "Commons"));
             }
         }
+         ***/
     }
 
     private void loginAttempt(){
@@ -167,7 +178,7 @@ public class LoginPage extends AppCompatActivity {
             return;
         }
         if(emailText.equals("a") && passText.equals("a")) {
-            mAuth.signInWithEmailAndPassword("mldunn@email.wm.edu","password").addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            mAuth.signInWithEmailAndPassword("marshall.dunn@e-rpo.net","password").addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {

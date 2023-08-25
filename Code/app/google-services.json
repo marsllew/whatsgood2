@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "148511415645",
-    "project_id": "what-sgood-71a3e",
-    "storage_bucket": "what-sgood-71a3e.appspot.com"
+    "project_number": "730857164044",
+    "project_id": "whatsgood2-f0b71",
+    "storage_bucket": "whatsgood2-f0b71.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:148511415645:android:2e1f2ca1d1743d21a8dcb4",
+        "mobilesdk_app_id": "1:730857164044:android:443ce707735c3715374d29",
         "android_client_info": {
           "package_name": "edu.wm.cs.cs425.helloworld"
         }
       },
       "oauth_client": [
         {
-          "client_id": "148511415645-p6k031ekv7vlaqhtsorhukie0un69okk.apps.googleusercontent.com",
+          "client_id": "730857164044-6gu53jtbn2uef0fk7hj4u51m28hshitt.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDP9fd1KjKwM4w16q5Y_z6UWnSZP92jFd8"
+          "current_key": "AIzaSyC8ORkd_5oO2WhOxdGswVhJPZvelbj3z34"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "148511415645-p6k031ekv7vlaqhtsorhukie0un69okk.apps.googleusercontent.com",
+              "client_id": "730857164044-6gu53jtbn2uef0fk7hj4u51m28hshitt.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
